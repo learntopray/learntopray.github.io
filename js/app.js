@@ -1225,7 +1225,9 @@
         type: 'button', class: 'btn small',
         onclick: (e) => { refs.slice(FIRST_REFS).forEach((r) => list.append(xrefItem(r))); e.currentTarget.remove(); },
       }, fill(X().showAll, { n: refs.length }));
-      return h('div', { class: 'xref-group' }, heading && h('p', { class: 'xref-heading' }, heading), list, more);
+      // The TSK ends each heading with a period ("gave."); it is left off on screen only.
+      // The stored data keeps it, exactly as the TSK wrote it.
+      return h('div', { class: 'xref-group' }, heading && h('p', { class: 'xref-heading' }, heading.replace(/\.$/, '')), list, more);
     });
   }
 
