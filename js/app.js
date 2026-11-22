@@ -1648,6 +1648,114 @@
     return myStudyView();
   }
 
+  /* ---------- Use offline: the whole app on this device ---------- */
+
+  // The files the service worker stores on the first visit: the whole of Pray by myself and
+  // Share Jesus. Must equal FILES in sw.js (tools/verify.py checks this).
+  const APP_FILES = ['./', 'index.html', 'css/app.css', 'js/app.js', 'lang/en.json', 'scripture/en-web.json',
+    'bible/index.json', 'tsk/index.json', 'manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png'];
+  const O = () => L.offline;
+  const offlineSizes = () => ({
+    download: mb(IDX.books.reduce((n, b) => n + b.download, 0) + (TSKI ? TSKI.books.reduce((n, b) => n + b.download, 0) : 0)),
+    stored: mb(IDX.books.reduce((n, b) => n + b.size, 0) + (TSKI ? TSKI.books.reduce((n, b) => n + b.size, 0) : 0)),
+  });
+
+  // How many of the app's own files are stored. Looked up afresh each time, so it stays true
+  // after an app update (the new version stores its files under a new name).
+  async function appFilesHere() {
+    if (!window.caches) return 0;
+    let n = 0;
+    for (const f of APP_FILES) {
+      try { if (await caches.match(new URL(f, location.href).href, { ignoreSearch: true })) n += 1; } catch (e) { /* ignore */ }
+    }
+    return n;
+  }
+
+  // Ask the phone to keep this app's data rather than clear it when space runs low.
+  async function askToKeep() {
+    try { if (navigator.storage && navigator.storage.persist && !(await navigator.storage.persisted())) await navigator.storage.persist(); } catch (e) { /* ignore */ }
+  }
+
+  async function keepEverything(status) {
+    if (downloading || downloadingTsk) return false;
+    downloading = true;
+    downloadingTsk = true;
+    let ok = true;
+    try {
+      // The app itself is stored by the service worker on the first visit; if it is missing, ask it again.
+      if ((await appFilesHere()) < APP_FILES.length && navigator.serviceWorker) {
+        const reg = await navigator.serviceWorker.register('sw.js');
+        await reg.update().catch(() => {});
+        await navigator.serviceWorker.ready;
+      }
+      const jobs = IDX.books.map((b) => [bibleCacheName(), 'bible/' + b.code + '.json'])
+        .concat(TSKI ? TSKI.books.map((b) => [tskCacheName(), 'tsk/' + b.code + '.json']) : []);
+      const open = {};
+      for (const name of new Set(jobs.map((j) => j[0]))) {
+        const cache = await caches.open(name);
+        open[name] = { cache, have: new Set((await cache.keys()).map((r) => new URL(r.url).pathname.split('/').slice(-2).join('/'))) };
+      }
+      let n = 0;
+      for (const [name, url] of jobs) {
+        if (!open[name].have.has(url)) {
+          const res = await fetch(url);
+          if (!res.ok) throw new Error('download');
+          await open[name].cache.put(url, res);
+        }
+        n += 1;
+        status.textContent = fill(O().downloading, { n, total: jobs.length });
+      }
+      BOOKS.forEach((book) => { book.saved = true; });
+      await askToKeep();
+      status.textContent = '';
+    } catch (e) {
+      ok = false;
+      status.textContent = B().stopped;
+    }
+    downloading = false;
+    downloadingTsk = false;
+    return ok;
+  }
+
+  function offlineView() {
+    const list = h('ul', { class: 'offline-status' });
+    const actions = h('div', { class: 'offline-actions' });
+    const status = h('p', { class: 'status', role: 'status' });
+    // Each part says its state in words; the check mark is only decoration.
+    const row = (label, done, text) => h('li', { class: done ? 'here' : 'missing' },
+      h('span', { class: 'part' }, label + ': '), h('span', null, text), done && h('span', { class: 'tick', 'aria-hidden': 'true' }, ' ✓'));
+    const check = async () => {
+      const [app, bible, xref] = await Promise.all([appFilesHere(), savedCount(), TSKI ? tskSavedCount() : 0]);
+      const nb = IDX.books.length;
+      const nx = TSKI ? TSKI.books.length : 0;
+      const appOk = app >= APP_FILES.length;
+      const bibleOk = bible >= nb;
+      const xrefOk = xref >= nx;
+      const all = appOk && bibleOk && xrefOk;
+      list.replaceChildren(
+        row(O().appPart, appOk, appOk ? O().here : O().notYet),
+        row(O().biblePart, bibleOk, bibleOk ? O().here : fill(O().partial, { n: bible, total: nb })),
+        row(O().xrefPart, xrefOk, xrefOk ? O().here : fill(O().partial, { n: xref, total: nx })));
+      if (all) await askToKeep();
+      const keep = h('button', {
+        type: 'button', class: 'btn primary',
+        onclick: async () => { keep.disabled = true; await askToKeep(); await keepEverything(status); check(); },
+      }, O().keep);
+      actions.replaceChildren(...[
+        all ? h('p', { class: 'saved-line' }, O().done) : keep,
+        !all && h('p', { class: 'hint' }, fill(O().size, offlineSizes())),
+        bible > 0 && h('button', { type: 'button', class: 'btn danger', onclick: async () => { await caches.delete(bibleCacheName()); BOOKS.clear(); check(); } }, B().remove),
+        bible > 0 && h('p', { class: 'hint' }, B().removeHint),
+        xref > 0 && h('button', { type: 'button', class: 'btn danger', onclick: async () => { await caches.delete(tskCacheName()); XREFS.clear(); check(); } }, X().remove),
+      ].filter(Boolean));
+    };
+    if (window.caches) check();
+    return {
+      title: O().heading,
+      nodes: [h('h1', null, O().heading), h('p', null, O().intro), list, actions, status, h('p', { class: 'hint' }, T().keepSafe)],
+    };
+  }
+
   /* ---------- router ---------- */
 
   function questionView(F, a, b) {
@@ -1687,6 +1795,7 @@
     else if (name === 'why') view = whyView();
     else if (name === 'bible') view = bibleView(arg, arg2, arg3);
     else if (name === 'study') view = studyView(arg, arg2, arg3, arg4, arg5);
+    else if (name === 'offline') view = offlineView();
     if (!view) view = welcomeView();
 
     // Share Jesus is held between two people, so its text is larger.
@@ -1733,6 +1842,7 @@
     document.getElementById('about-link').textContent = L.nav.about;
     document.getElementById('bible-link').textContent = L.nav.bible;
     document.getElementById('credit').textContent = L.app.translationCredit;
+    document.getElementById('offline-link').textContent = L.nav.offline;
     const skip = document.getElementById('skip');
     skip.textContent = L.app.skipToContent;
     skip.addEventListener('click', (e) => { e.preventDefault(); main.focus(); });

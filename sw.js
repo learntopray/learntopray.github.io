@@ -7,7 +7,7 @@
  * version in bible/index.json (tools/verify.py checks they match), so books kept on
  * a phone survive app updates and are replaced only when the Bible files change.
  * Cross-reference files (tsk/<CODE>.json) are kept the same way, in TSK. */
-const CACHE = 'teach-us-to-pray-v17';
+const CACHE = 'teach-us-to-pray-v18';
 const BIBLE = 'teach-us-to-pray-bible-8679a735ef';
 const TSK = 'teach-us-to-pray-tsk-e0305c51f1';
 const FILES = [

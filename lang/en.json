@@ -35,7 +35,8 @@
     "next": "Next",
     "start": "Start",
     "skipQuestion": "Skip this question",
-    "bible": "Bible study"
+    "bible": "Bible study",
+    "offline": "Use offline"
   },
   "guide": {
     "introHeading": "Before you begin",
@@ -709,7 +710,8 @@
       "iPhone or iPad (Safari): tap the Share button (a square with an arrow pointing up), then \"Add to Home Screen\", then \"Add\".",
       "Android (Chrome): tap the menu (three dots at the top right), then \"Add to Home screen\" or \"Install app\", then confirm.",
       "Computer (Chrome or Edge): click the install button at the right of the address bar, or open the browser menu and choose to install the app.",
-      "On iPhone and iPad, the app on your home screen keeps its own notes and bookmarks, separate from Safari. To move them across, save a backup file in Safari and open it in the app on your home screen."
+      "On iPhone and iPad, the app on your home screen keeps its own notes and bookmarks, separate from Safari. To move them across, save a backup file in Safari and open it in the app on your home screen.",
+      "You can keep your own complete copy of the app on each device. Open \"Use offline\" at the bottom of any page and tap \"Keep everything on this device\". The prayer guides, Share Jesus, the whole Bible and the cross-references then all work with no connection. Each device keeps its own copy, and nothing is shared between them."
     ],
     "howHeading": "How it works",
     "how": [
@@ -766,6 +768,20 @@
     "none": "No verses found for “{q}”.",
     "first200": "Showing the first 200. Add another word to narrow the search.",
     "needAll": "Search needs the whole Bible on this device. It is about {download} MB to download."
+  },
+  "offline": {
+    "heading": "Use offline",
+    "intro": "Keep the whole app on this device, so everything works with no connection: the prayer guides, Share Jesus, the whole Bible and its cross-references.",
+    "appPart": "The prayer guides and Share Jesus",
+    "biblePart": "The Bible",
+    "xrefPart": "Cross-references",
+    "here": "On this device",
+    "notYet": "Not on this device yet",
+    "partial": "{n} of {total} books on this device",
+    "keep": "Keep everything on this device",
+    "size": "About {download} MB to download, and about {stored} MB on this device.",
+    "downloading": "Downloading: {n} of {total} files",
+    "done": "Everything is on this device."
   },
   "xref": {
     "heading": "Cross-references",

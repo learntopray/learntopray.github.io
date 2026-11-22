@@ -305,6 +305,13 @@ button.vn:hover, button.vn[aria-expanded="true"] { color: var(--on-accent); back
 #note-title { display: block; width: 100%; min-height: 2.9rem; padding: .55rem .75rem; font: inherit; color: var(--text); background: var(--surface); border: 2px solid var(--muted); border-radius: var(--radius); }
 .note-hits { margin-bottom: 1rem; }
 .continue-top { margin: 0 0 1rem; }
+.offline-status { list-style: none; padding: 0; margin: 1rem 0; }
+.offline-status li { padding: .7rem .9rem; margin-bottom: .45rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.offline-status li.here { border-color: var(--accent); }
+.offline-status .part { font-weight: 700; }
+.offline-status .tick { color: var(--accent); font-weight: 700; }
+.offline-actions { display: grid; gap: .5rem; justify-items: start; margin-bottom: 1rem; }
+.offline-actions .hint { margin: 0 0 .5rem; }
 .continue-top .btn { width: 100%; }
 .vpanel-title:focus { outline: none; }
 /* Anything focused or opened inside the text stays clear of the pinned Back/Next bar. */

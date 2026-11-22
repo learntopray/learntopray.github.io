@@ -20,6 +20,7 @@
 10. The Bible study files equal a fresh extraction from the source (tools/build_bible.py,
     which also checks every chapter word for word and every translators' note), and the
     service worker's Bible cache is named after the same version.
+12. The Use offline screen checks the same app files the service worker stores.
 11. The cross-reference files equal a fresh extraction from the CrossWire TSK module
     (tools/build_tsk.py, given with --tsk-zip), the module's configuration file is kept in
     sources/, and the service worker's TSK cache is named after the same version.
@@ -233,6 +234,11 @@ if f"const TSK = 'teach-us-to-pray-tsk-{tsk_version}';" not in sw:
     problems.append(f"sw.js TSK cache must be named after the cross-reference version {tsk_version}")
 if "DistributionLicense=Public Domain" not in (ROOT / "sources" / "crosswire-tsk.conf").read_text(encoding="utf-8"):
     problems.append("sources/crosswire-tsk.conf must record the module's Public Domain licence")
+
+# 12: the Use offline screen checks the same files the service worker stores
+app_files = re.search(r"const APP_FILES = \[(.*?)\];", (ROOT / "js" / "app.js").read_text(encoding="utf-8"), re.S)
+if not app_files or set(re.findall(r"'([^']+)'", app_files.group(1))) != listed | {"./"}:
+    problems.append("APP_FILES in js/app.js must equal FILES in sw.js")
 
 print("FAILED:\n- " + "\n- ".join(problems) if problems else "ALL CHECKS PASSED")
 sys.exit(1 if problems else 0)
