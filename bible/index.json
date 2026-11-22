@@ -1,0 +1,658 @@
+{
+ "translation": "World English Bible",
+ "abbreviation": "WEB",
+ "license": "Public Domain",
+ "source": "https://eBible.org/Scriptures/eng-web_usfm.zip",
+ "version": "8679a735ef",
+ "books": [
+  {
+   "code": "GEN",
+   "name": "Genesis",
+   "shelf": "ot",
+   "chapters": 50,
+   "size": 206820,
+   "download": 62055
+  },
+  {
+   "code": "EXO",
+   "name": "Exodus",
+   "shelf": "ot",
+   "chapters": 40,
+   "size": 176070,
+   "download": 49526
+  },
+  {
+   "code": "LEV",
+   "name": "Leviticus",
+   "shelf": "ot",
+   "chapters": 27,
+   "size": 130519,
+   "download": 31794
+  },
+  {
+   "code": "NUM",
+   "name": "Numbers",
+   "shelf": "ot",
+   "chapters": 36,
+   "size": 181882,
+   "download": 46154
+  },
+  {
+   "code": "DEU",
+   "name": "Deuteronomy",
+   "shelf": "ot",
+   "chapters": 34,
+   "size": 150898,
+   "download": 43023
+  },
+  {
+   "code": "JOS",
+   "name": "Joshua",
+   "shelf": "ot",
+   "chapters": 24,
+   "size": 101651,
+   "download": 28511
+  },
+  {
+   "code": "JDG",
+   "name": "Judges",
+   "shelf": "ot",
+   "chapters": 21,
+   "size": 102565,
+   "download": 31187
+  },
+  {
+   "code": "RUT",
+   "name": "Ruth",
+   "shelf": "ot",
+   "chapters": 4,
+   "size": 14121,
+   "download": 5244
+  },
+  {
+   "code": "1SA",
+   "name": "1 Samuel",
+   "shelf": "ot",
+   "chapters": 31,
+   "size": 134356,
+   "download": 41763
+  },
+  {
+   "code": "2SA",
+   "name": "2 Samuel",
+   "shelf": "ot",
+   "chapters": 24,
+   "size": 111225,
+   "download": 35410
+  },
+  {
+   "code": "1KI",
+   "name": "1 Kings",
+   "shelf": "ot",
+   "chapters": 22,
+   "size": 130959,
+   "download": 39542
+  },
+  {
+   "code": "2KI",
+   "name": "2 Kings",
+   "shelf": "ot",
+   "chapters": 25,
+   "size": 125518,
+   "download": 36012
+  },
+  {
+   "code": "1CH",
+   "name": "1 Chronicles",
+   "shelf": "ot",
+   "chapters": 29,
+   "size": 115835,
+   "download": 35997
+  },
+  {
+   "code": "2CH",
+   "name": "2 Chronicles",
+   "shelf": "ot",
+   "chapters": 36,
+   "size": 144300,
+   "download": 42592
+  },
+  {
+   "code": "EZR",
+   "name": "Ezra",
+   "shelf": "ot",
+   "chapters": 10,
+   "size": 42783,
+   "download": 13443
+  },
+  {
+   "code": "NEH",
+   "name": "Nehemiah",
+   "shelf": "ot",
+   "chapters": 13,
+   "size": 59843,
+   "download": 19549
+  },
+  {
+   "code": "EST",
+   "name": "Esther",
+   "shelf": "ot",
+   "chapters": 10,
+   "size": 31487,
+   "download": 9880
+  },
+  {
+   "code": "JOB",
+   "name": "Job",
+   "shelf": "ot",
+   "chapters": 42,
+   "size": 116711,
+   "download": 37230
+  },
+  {
+   "code": "PSA",
+   "name": "Psalms",
+   "shelf": "ot",
+   "chapters": 150,
+   "size": 284594,
+   "download": 83159,
+   "chapterName": "Psalm"
+  },
+  {
+   "code": "PRO",
+   "name": "Proverbs",
+   "shelf": "ot",
+   "chapters": 31,
+   "size": 98546,
+   "download": 29987
+  },
+  {
+   "code": "ECC",
+   "name": "Ecclesiastes",
+   "shelf": "ot",
+   "chapters": 12,
+   "size": 30631,
+   "download": 10627
+  },
+  {
+   "code": "SNG",
+   "name": "Song of Solomon",
+   "shelf": "ot",
+   "chapters": 8,
+   "size": 18176,
+   "download": 6033
+  },
+  {
+   "code": "ISA",
+   "name": "Isaiah",
+   "shelf": "ot",
+   "chapters": 66,
+   "size": 222626,
+   "download": 69497
+  },
+  {
+   "code": "JER",
+   "name": "Jeremiah",
+   "shelf": "ot",
+   "chapters": 52,
+   "size": 247256,
+   "download": 71234
+  },
+  {
+   "code": "LAM",
+   "name": "Lamentations",
+   "shelf": "ot",
+   "chapters": 5,
+   "size": 23444,
+   "download": 7739
+  },
+  {
+   "code": "EZK",
+   "name": "Ezekiel",
+   "shelf": "ot",
+   "chapters": 48,
+   "size": 217370,
+   "download": 59130
+  },
+  {
+   "code": "DAN",
+   "name": "Daniel",
+   "shelf": "ot",
+   "chapters": 12,
+   "size": 65018,
+   "download": 20055
+  },
+  {
+   "code": "HOS",
+   "name": "Hosea",
+   "shelf": "ot",
+   "chapters": 14,
+   "size": 33899,
+   "download": 11150
+  },
+  {
+   "code": "JOL",
+   "name": "Joel",
+   "shelf": "ot",
+   "chapters": 3,
+   "size": 13278,
+   "download": 4649
+  },
+  {
+   "code": "AMO",
+   "name": "Amos",
+   "shelf": "ot",
+   "chapters": 9,
+   "size": 25934,
+   "download": 8532
+  },
+  {
+   "code": "OBA",
+   "name": "Obadiah",
+   "shelf": "ot",
+   "chapters": 1,
+   "size": 3826,
+   "download": 1787
+  },
+  {
+   "code": "JON",
+   "name": "Jonah",
+   "shelf": "ot",
+   "chapters": 4,
+   "size": 7446,
+   "download": 3067
+  },
+  {
+   "code": "MIC",
+   "name": "Micah",
+   "shelf": "ot",
+   "chapters": 7,
+   "size": 20012,
+   "download": 7187
+  },
+  {
+   "code": "NAM",
+   "name": "Nahum",
+   "shelf": "ot",
+   "chapters": 3,
+   "size": 7280,
+   "download": 3295
+  },
+  {
+   "code": "HAB",
+   "name": "Habakkuk",
+   "shelf": "ot",
+   "chapters": 3,
+   "size": 8824,
+   "download": 3830
+  },
+  {
+   "code": "ZEP",
+   "name": "Zephaniah",
+   "shelf": "ot",
+   "chapters": 3,
+   "size": 9100,
+   "download": 3778
+  },
+  {
+   "code": "HAG",
+   "name": "Haggai",
+   "shelf": "ot",
+   "chapters": 2,
+   "size": 6297,
+   "download": 2385
+  },
+  {
+   "code": "ZEC",
+   "name": "Zechariah",
+   "shelf": "ot",
+   "chapters": 14,
+   "size": 35733,
+   "download": 11819
+  },
+  {
+   "code": "MAL",
+   "name": "Malachi",
+   "shelf": "ot",
+   "chapters": 4,
+   "size": 10031,
+   "download": 4000
+  },
+  {
+   "code": "MAT",
+   "name": "Matthew",
+   "shelf": "nt",
+   "chapters": 28,
+   "size": 139344,
+   "download": 44502
+  },
+  {
+   "code": "MRK",
+   "name": "Mark",
+   "shelf": "nt",
+   "chapters": 16,
+   "size": 85992,
+   "download": 28783
+  },
+  {
+   "code": "LUK",
+   "name": "Luke",
+   "shelf": "nt",
+   "chapters": 24,
+   "size": 144194,
+   "download": 48268
+  },
+  {
+   "code": "JHN",
+   "name": "John",
+   "shelf": "nt",
+   "chapters": 21,
+   "size": 110081,
+   "download": 34033
+  },
+  {
+   "code": "ACT",
+   "name": "Acts",
+   "shelf": "nt",
+   "chapters": 28,
+   "size": 139141,
+   "download": 46392
+  },
+  {
+   "code": "ROM",
+   "name": "Romans",
+   "shelf": "nt",
+   "chapters": 16,
+   "size": 56272,
+   "download": 19133
+  },
+  {
+   "code": "1CO",
+   "name": "1 Corinthians",
+   "shelf": "nt",
+   "chapters": 16,
+   "size": 53624,
+   "download": 18266
+  },
+  {
+   "code": "2CO",
+   "name": "2 Corinthians",
+   "shelf": "nt",
+   "chapters": 13,
+   "size": 34694,
+   "download": 12573
+  },
+  {
+   "code": "GAL",
+   "name": "Galatians",
+   "shelf": "nt",
+   "chapters": 6,
+   "size": 18265,
+   "download": 7053
+  },
+  {
+   "code": "EPH",
+   "name": "Ephesians",
+   "shelf": "nt",
+   "chapters": 6,
+   "size": 17977,
+   "download": 6714
+  },
+  {
+   "code": "PHP",
+   "name": "Philippians",
+   "shelf": "nt",
+   "chapters": 4,
+   "size": 12889,
+   "download": 5196
+  },
+  {
+   "code": "COL",
+   "name": "Colossians",
+   "shelf": "nt",
+   "chapters": 4,
+   "size": 11841,
+   "download": 4761
+  },
+  {
+   "code": "1TH",
+   "name": "1 Thessalonians",
+   "shelf": "nt",
+   "chapters": 5,
+   "size": 10687,
+   "download": 4265
+  },
+  {
+   "code": "2TH",
+   "name": "2 Thessalonians",
+   "shelf": "nt",
+   "chapters": 3,
+   "size": 6105,
+   "download": 2542
+  },
+  {
+   "code": "1TI",
+   "name": "1 Timothy",
+   "shelf": "nt",
+   "chapters": 6,
+   "size": 14381,
+   "download": 5787
+  },
+  {
+   "code": "2TI",
+   "name": "2 Timothy",
+   "shelf": "nt",
+   "chapters": 4,
+   "size": 9860,
+   "download": 4301
+  },
+  {
+   "code": "TIT",
+   "name": "Titus",
+   "shelf": "nt",
+   "chapters": 3,
+   "size": 5639,
+   "download": 2578
+  },
+  {
+   "code": "PHM",
+   "name": "Philemon",
+   "shelf": "nt",
+   "chapters": 1,
+   "size": 2626,
+   "download": 1289
+  },
+  {
+   "code": "HEB",
+   "name": "Hebrews",
+   "shelf": "nt",
+   "chapters": 13,
+   "size": 41549,
+   "download": 14913
+  },
+  {
+   "code": "JAS",
+   "name": "James",
+   "shelf": "nt",
+   "chapters": 5,
+   "size": 13425,
+   "download": 5559
+  },
+  {
+   "code": "1PE",
+   "name": "1 Peter",
+   "shelf": "nt",
+   "chapters": 5,
+   "size": 14844,
+   "download": 6059
+  },
+  {
+   "code": "2PE",
+   "name": "2 Peter",
+   "shelf": "nt",
+   "chapters": 3,
+   "size": 9322,
+   "download": 3946
+  },
+  {
+   "code": "1JN",
+   "name": "1 John",
+   "shelf": "nt",
+   "chapters": 5,
+   "size": 14505,
+   "download": 4673
+  },
+  {
+   "code": "2JN",
+   "name": "2 John",
+   "shelf": "nt",
+   "chapters": 1,
+   "size": 1764,
+   "download": 883
+  },
+  {
+   "code": "3JN",
+   "name": "3 John",
+   "shelf": "nt",
+   "chapters": 1,
+   "size": 1718,
+   "download": 888
+  },
+  {
+   "code": "JUD",
+   "name": "Jude",
+   "shelf": "nt",
+   "chapters": 1,
+   "size": 3983,
+   "download": 2014
+  },
+  {
+   "code": "REV",
+   "name": "Revelation",
+   "shelf": "nt",
+   "chapters": 22,
+   "size": 66612,
+   "download": 20828
+  },
+  {
+   "code": "TOB",
+   "name": "Tobit",
+   "shelf": "ap",
+   "chapters": 14,
+   "size": 38456,
+   "download": 13209
+  },
+  {
+   "code": "JDT",
+   "name": "Judith",
+   "shelf": "ap",
+   "chapters": 16,
+   "size": 61825,
+   "download": 20549
+  },
+  {
+   "code": "ESG",
+   "name": "Esther (Greek)",
+   "shelf": "ap",
+   "chapters": 10,
+   "size": 42066,
+   "download": 14850
+  },
+  {
+   "code": "WIS",
+   "name": "Wisdom of Solomon",
+   "shelf": "ap",
+   "chapters": 19,
+   "size": 70454,
+   "download": 23717
+  },
+  {
+   "code": "SIR",
+   "name": "Sirach",
+   "shelf": "ap",
+   "chapters": 51,
+   "size": 181569,
+   "download": 55876
+  },
+  {
+   "code": "BAR",
+   "name": "Baruch",
+   "shelf": "ap",
+   "chapters": 6,
+   "size": 27927,
+   "download": 9935
+  },
+  {
+   "code": "1MA",
+   "name": "1 Maccabees",
+   "shelf": "ap",
+   "chapters": 16,
+   "size": 132099,
+   "download": 41702
+  },
+  {
+   "code": "2MA",
+   "name": "2 Maccabees",
+   "shelf": "ap",
+   "chapters": 15,
+   "size": 104416,
+   "download": 36713
+  },
+  {
+   "code": "1ES",
+   "name": "1 Esdras",
+   "shelf": "ap",
+   "chapters": 9,
+   "size": 69447,
+   "download": 22883
+  },
+  {
+   "code": "MAN",
+   "name": "Prayer of Manasses",
+   "shelf": "ap",
+   "chapters": 1,
+   "size": 2653,
+   "download": 1231
+  },
+  {
+   "code": "PS2",
+   "name": "Psalm 151",
+   "shelf": "ap",
+   "chapters": 1,
+   "size": 924,
+   "download": 520
+  },
+  {
+   "code": "3MA",
+   "name": "3 Maccabees",
+   "shelf": "ap",
+   "chapters": 7,
+   "size": 39901,
+   "download": 15837
+  },
+  {
+   "code": "2ES",
+   "name": "2 Esdras",
+   "shelf": "ap",
+   "chapters": 16,
+   "size": 127773,
+   "download": 42163
+  },
+  {
+   "code": "4MA",
+   "name": "4 Maccabees",
+   "shelf": "ap",
+   "chapters": 18,
+   "size": 61436,
+   "download": 22630
+  },
+  {
+   "code": "DAG",
+   "name": "Daniel (Greek)",
+   "shelf": "ap",
+   "chapters": 14,
+   "size": 86553,
+   "download": 26855
+  }
+ ]
+}

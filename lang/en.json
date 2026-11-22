@@ -1,0 +1,850 @@
+{
+  "meta": {
+    "lang": "en",
+    "dir": "ltr",
+    "languageName": "English",
+    "scriptureFile": "scripture/en-web.json"
+  },
+  "app": {
+    "name": "Teach Us to Pray",
+    "description": "Learn to pray in your own words, following the pattern Jesus gave in the Lord's Prayer.",
+    "skipToContent": "Skip to content",
+    "ourNoteLabel": "Our note",
+    "translationCredit": "World English Bible (WEB), public domain"
+  },
+  "books": {
+    "MAT": "Matthew",
+    "MRK": "Mark",
+    "LUK": "Luke",
+    "JHN": "John",
+    "PSA": "Psalm",
+    "ACT": "Acts",
+    "ROM": "Romans",
+    "1CO": "1 Corinthians",
+    "2CO": "2 Corinthians",
+    "EPH": "Ephesians",
+    "PHP": "Philippians",
+    "HEB": "Hebrews",
+    "JAS": "James",
+    "1PE": "1 Peter",
+    "1JN": "1 John"
+  },
+  "nav": {
+    "about": "About and privacy",
+    "back": "Back",
+    "next": "Next",
+    "start": "Start",
+    "skipQuestion": "Skip this question",
+    "bible": "Bible study"
+  },
+  "guide": {
+    "introHeading": "Before you begin",
+    "introVerses": [
+      "MAT 6:7",
+      "MAT 6:8"
+    ],
+    "intro": [
+      "There are seven short steps. Each one shows the words of Jesus and asks you one question at a time.",
+      "Answer each question as if you are speaking to him, in a sentence of your own. You may leave any question blank.",
+      "At the end you will read your prayer through, then pray it out loud."
+    ],
+    "begin": "Begin",
+    "questionOf": ", question {k} of {count}",
+    "exampleHeading": "A prayer from Scripture",
+    "hint": "Write it as you would say it to him. You may leave this blank.",
+    "editedHere": "Your words for this step, as you changed them, are all here.",
+    "editedFirst": "Your words for this step, as you changed them, are all in its first question.",
+    "toReview": "Read your prayer through",
+    "reviewHeading": "Read your prayer through",
+    "reviewHint": "Read it slowly, as if you are speaking to him. Change any words that are not true or do not sound like you, and join any words that run together.",
+    "toAloud": "Pray it out loud",
+    "partOf": "Part {n} of {total}",
+    "sayThis": "Say this out loud.",
+    "finish": "Finish"
+  },
+  "welcome": {
+    "heading": "Teach Us to Pray",
+    "verses": [
+      "LUK 11:1",
+      "MAT 6:9a"
+    ],
+    "body": [
+      "Each step shows the words of Jesus and asks you a question.",
+      "You answer in your own words. The app never writes a prayer for you."
+    ],
+    "choose": "How would you like to pray?",
+    "byMyself": "Pray by myself",
+    "byMyselfHint": "A guided prayer in your own words. About 10 minutes.",
+    "shareHint": "Guide someone who is ready to turn to Jesus as they pray in their own words.",
+    "whyLink": "Why we pray this way (Matthew 6:5-8)"
+  },
+  "why": {
+    "heading": "Why we pray this way",
+    "sections": [
+      {
+        "heading": "Matthew 6:5-8",
+        "verses": [
+          "MAT 6:5",
+          "MAT 6:6",
+          "MAT 6:7",
+          "MAT 6:8"
+        ]
+      },
+      {
+        "heading": "Luke 11:1-4",
+        "verses": [
+          "LUK 11:1",
+          "LUK 11:2",
+          "LUK 11:3",
+          "LUK 11:4"
+        ]
+      }
+    ]
+  },
+  "step": {
+    "progress": "Step {n} of {total}",
+    "relatedHeading": "Also in Scripture today",
+    "moreLink": "More from Scripture for this step",
+    "perDay": 2,
+    "cuesLabel": "Think about"
+  },
+  "steps": [
+    {
+      "name": "Come to the Father",
+      "verses": [
+        [
+          "MAT 6:9a"
+        ]
+      ],
+      "related": [
+        [
+          "MAT 6:6"
+        ],
+        [
+          "MAT 6:7",
+          "MAT 6:8"
+        ],
+        [
+          "MRK 1:35"
+        ],
+        [
+          "JHN 4:23",
+          "JHN 4:24"
+        ],
+        [
+          "LUK 11:9",
+          "LUK 11:10",
+          "LUK 11:11",
+          "LUK 11:12",
+          "LUK 11:13"
+        ],
+        [
+          "LUK 18:1",
+          "LUK 18:2",
+          "LUK 18:3",
+          "LUK 18:4",
+          "LUK 18:5",
+          "LUK 18:6",
+          "LUK 18:7",
+          "LUK 18:8"
+        ],
+        [
+          "PSA 145:18"
+        ],
+        [
+          "PSA 62:8"
+        ],
+        [
+          "PSA 103:13"
+        ]
+      ],
+      "guided": [
+        {
+          "q": "Jesus called God his Father in heaven. Speak to him now. How will you begin?",
+          "cues": [
+            "how you are coming to him today"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Honor his name",
+      "verses": [
+        [
+          "MAT 6:9b"
+        ]
+      ],
+      "related": [
+        [
+          "JHN 12:27",
+          "JHN 12:28"
+        ],
+        [
+          "LUK 10:21"
+        ],
+        [
+          "JHN 11:41",
+          "JHN 11:42"
+        ],
+        [
+          "MAT 22:37",
+          "MAT 22:38"
+        ],
+        [
+          "JHN 17:1",
+          "JHN 17:2",
+          "JHN 17:3"
+        ],
+        [
+          "PSA 8:1"
+        ],
+        [
+          "PSA 103:1",
+          "PSA 103:2",
+          "PSA 103:3",
+          "PSA 103:4",
+          "PSA 103:5"
+        ],
+        [
+          "PSA 100:4"
+        ]
+      ],
+      "guided": [
+        {
+          "q": "Tell him what you honor about him today.",
+          "cues": [
+            "who he is",
+            "what he has made",
+            "what he has said"
+          ],
+          "example": [
+            "PSA 8:1"
+          ]
+        },
+        {
+          "q": "Thank him for something from the last day or two.",
+          "cues": [
+            "a person",
+            "a moment",
+            "a prayer he answered"
+          ],
+          "example": [
+            "JHN 11:41"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "His kingdom and will",
+      "verses": [
+        [
+          "MAT 6:10"
+        ]
+      ],
+      "related": [
+        [
+          "MAT 6:33"
+        ],
+        [
+          "MAT 26:39"
+        ],
+        [
+          "MAT 9:37",
+          "MAT 9:38"
+        ],
+        [
+          "MAT 7:21"
+        ],
+        [
+          "JHN 6:38"
+        ],
+        [
+          "PSA 143:10"
+        ],
+        [
+          "PSA 40:7",
+          "PSA 40:8"
+        ]
+      ],
+      "guided": [
+        {
+          "q": "Where in your life today do you want his will done? Tell him.",
+          "cues": [
+            "in me",
+            "my home",
+            "my work",
+            "my town",
+            "the world"
+          ],
+          "example": [
+            "MAT 26:39"
+          ]
+        },
+        {
+          "q": "If there is a decision in front of you, ask him for his will in it.",
+          "example": [
+            "PSA 143:10"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Daily bread",
+      "verses": [
+        [
+          "MAT 6:11"
+        ]
+      ],
+      "related": [
+        [
+          "MAT 6:31",
+          "MAT 6:32"
+        ],
+        [
+          "MAT 7:7",
+          "MAT 7:8",
+          "MAT 7:9",
+          "MAT 7:10",
+          "MAT 7:11"
+        ],
+        [
+          "MAT 6:25",
+          "MAT 6:26"
+        ],
+        [
+          "JHN 6:35"
+        ],
+        [
+          "PSA 145:15",
+          "PSA 145:16"
+        ],
+        [
+          "PSA 23:1"
+        ]
+      ],
+      "guided": [
+        {
+          "q": "Ask him plainly for what you need today.",
+          "cues": [
+            "food and home",
+            "work",
+            "health",
+            "strength for today"
+          ],
+          "example": [
+            "PSA 145:15",
+            "PSA 145:16"
+          ]
+        },
+        {
+          "q": "Ask him for what someone else needs today. Say their name.",
+          "cues": [
+            "family",
+            "a friend",
+            "someone who is sick",
+            "someone in need"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Forgive us",
+      "verses": [
+        [
+          "MAT 6:12"
+        ],
+        [
+          "MAT 6:14",
+          "MAT 6:15"
+        ]
+      ],
+      "related": [
+        [
+          "MRK 11:25"
+        ],
+        [
+          "MAT 18:21",
+          "MAT 18:22"
+        ],
+        [
+          "MAT 5:44",
+          "MAT 5:45"
+        ],
+        [
+          "LUK 18:9",
+          "LUK 18:10",
+          "LUK 18:11",
+          "LUK 18:12",
+          "LUK 18:13",
+          "LUK 18:14"
+        ],
+        [
+          "LUK 6:37"
+        ],
+        [
+          "LUK 23:34"
+        ],
+        [
+          "MAT 5:23",
+          "MAT 5:24"
+        ],
+        [
+          "PSA 51:1",
+          "PSA 51:2"
+        ],
+        [
+          "PSA 32:5"
+        ],
+        [
+          "PSA 103:12"
+        ]
+      ],
+      "guided": [
+        {
+          "q": "Tell him what you need forgiveness for.",
+          "cues": [
+            "something I did",
+            "something I said",
+            "something I left undone"
+          ],
+          "example": [
+            "LUK 18:13"
+          ]
+        },
+        {
+          "q": "If there is someone you need to forgive, tell him, and say their name.",
+          "example": [
+            "LUK 23:34"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Keep us and deliver us",
+      "verses": [
+        [
+          "MAT 6:13a"
+        ]
+      ],
+      "related": [
+        [
+          "MAT 26:40",
+          "MAT 26:41"
+        ],
+        [
+          "JHN 17:15"
+        ],
+        [
+          "LUK 22:31",
+          "LUK 22:32"
+        ],
+        [
+          "JHN 16:33"
+        ],
+        [
+          "PSA 121:7",
+          "PSA 121:8"
+        ],
+        [
+          "PSA 46:1"
+        ]
+      ],
+      "note": "The World English Bible prints one more sentence in this verse, with a footnote that some Greek texts omit it. It is not shown here.",
+      "guided": [
+        {
+          "q": "Tell him where you are being tempted right now.",
+          "cues": [
+            "at home",
+            "at work",
+            "when I am alone",
+            "when I am tired or angry"
+          ]
+        },
+        {
+          "q": "Ask him to deliver you from what you need delivering from.",
+          "cues": [
+            "a fear",
+            "a habit",
+            "a danger"
+          ],
+          "example": [
+            "JHN 17:15"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Close",
+      "verses": [
+        [
+          "JHN 14:13",
+          "JHN 14:14"
+        ],
+        [
+          "JHN 16:23",
+          "JHN 16:24"
+        ]
+      ],
+      "related": [
+        [
+          "JHN 15:7"
+        ],
+        [
+          "JHN 15:16"
+        ],
+        [
+          "MAT 18:19",
+          "MAT 18:20"
+        ],
+        [
+          "MAT 21:22"
+        ],
+        [
+          "PSA 19:14"
+        ]
+      ],
+      "guided": [
+        {
+          "q": "Close your prayer to him in your own words.",
+          "example": [
+            "PSA 19:14"
+          ]
+        }
+      ]
+    }
+  ],
+  "share": {
+    "name": "Share Jesus",
+    "start": {
+      "name": "Before you begin",
+      "verses": [["JHN 6:44"], ["ACT 8:30", "ACT 8:31"], ["1CO 3:6", "1CO 3:7"]],
+      "note": "This is a conversation, not a script. The Father draws people to Jesus, so there is no need to push. Sit where you can both see the screen. Read each passage together, ask each question gently, listen, and type what they say in their own words. They may stop at any time.",
+      "askLabel": "Ask them",
+      "ask": "Do you understand what you are about to say to God?",
+      "next": "Begin"
+    },
+    "cost": {
+      "name": "Count the cost",
+      "intro": "Read these together.",
+      "verses": [["LUK 14:28"], ["LUK 9:23"], ["JHN 16:33a"]],
+      "extraNote": "Jesus said this to prepare people, not to discourage them.",
+      "extraVerses": [["LUK 8:13"]],
+      "ask": "Jesus told people this at the start. Do you want to keep going?",
+      "yes": "Yes, keep going",
+      "no": "Not today"
+    },
+    "notToday": {
+      "heading": "That is all right.",
+      "note": "No one should be rushed. Thank them, stay their friend, and keep praying for them.",
+      "home": "Back to the start"
+    },
+    "ideasLabel": "Ideas you may mention",
+    "hint": "Type what they say, in their own words. You may leave this blank.",
+    "needHelp": "They need help finding words",
+    "steps": [
+      {
+        "name": "Who Jesus is",
+        "verses": [["ROM 10:9", "ROM 10:10"], ["1CO 15:3", "1CO 15:4"], ["JHN 3:16"]],
+        "guided": [
+          {
+            "q": "Speak to the Father now. Tell him, in your own words, who you believe Jesus is.",
+            "cues": ["he died for our sins", "God raised him from the dead", "he is Lord"]
+          }
+        ]
+      },
+      {
+        "name": "Being honest with God",
+        "verses": [["LUK 18:13"], ["MRK 1:15"], ["1JN 1:9"]],
+        "guided": [
+          {
+            "q": "Tell him honestly what you have done wrong, or how you have lived without him, that you want to turn from."
+          }
+        ]
+      },
+      {
+        "name": "Following him",
+        "verses": [["MRK 1:17"], ["LUK 9:23"]],
+        "guided": [
+          {
+            "q": "If you are ready to turn from that and follow Jesus, tell him so in your own words."
+          }
+        ]
+      },
+      {
+        "name": "Asking",
+        "verses": [["LUK 11:13"], ["LUK 23:42"]],
+        "guided": [
+          {
+            "q": "Ask him for what you need as you begin to follow him.",
+            "cues": ["forgiveness", "his help to follow him", "his Spirit", "strength for the days ahead"]
+          }
+        ]
+      }
+    ],
+    "borrow": {
+      "name": "Words to borrow",
+      "note": "These are prayers from Scripture. Use any of them as your own.",
+      "prayers": ["LUK 18:13b", "LUK 23:42b", "MRK 9:24b"],
+      "use": "Use these words",
+      "done": "Done"
+    },
+    "review": {
+      "heading": "Read it through together",
+      "hint": "Read it slowly, as if you are speaking to him. Change any words that are not true or do not sound like them, and join any words that run together.",
+      "lineHint": "To make a phrase shorter, start a new line.",
+      "borrowedHeading": "Words from Scripture",
+      "remove": "Remove",
+      "empty": "There are no words to pray yet.",
+      "toBorrow": "Words to borrow",
+      "toWalk": "Pray it together"
+    },
+    "walk": {
+      "progress": "Phrase {n} of {total}",
+      "leaderLine": "Read this phrase, then let them repeat it.",
+      "finish": "Finish"
+    },
+    "prayer": {
+      "heading": "Their prayer",
+      "intro": "The prayer in their own words.",
+      "next": "What comes next"
+    },
+    "after": {
+      "heading": "After the prayer",
+      "sections": [
+        {
+          "heading": "Grace, not the words",
+          "verses": [["EPH 2:8", "EPH 2:9"]],
+          "note": "What matters is Jesus, not the exact words."
+        },
+        {
+          "heading": "His promises",
+          "verses": [["JHN 16:33b"], ["JHN 10:27", "JHN 10:28", "JHN 10:29"], ["PHP 1:6"], ["MAT 28:20b"], ["ROM 8:38", "ROM 8:39"], ["HEB 13:5"]]
+        },
+        {
+          "heading": "When it gets hard",
+          "verses": [["MAT 7:24", "MAT 7:25", "MAT 7:26", "MAT 7:27"], ["1PE 4:12"], ["JAS 1:2", "JAS 1:3", "JAS 1:4"], ["1CO 10:13"]]
+        },
+        {
+          "heading": "When you fail",
+          "verses": [["1JN 1:9"]]
+        },
+        {
+          "heading": "Feelings are not the test",
+          "verses": [["2CO 5:7"]]
+        }
+      ],
+      "nextHeading": "Next steps",
+      "next": [
+        { "text": "Be baptized.", "verses": [["ACT 2:38"], ["MAT 28:19"]] },
+        { "text": "Read the Gospel of John, and pray each day.", "verses": [], "link": "JHN/1" },
+        { "text": "Stay close to other believers.", "verses": [["HEB 10:24", "HEB 10:25"], ["ACT 2:42"]] },
+        { "text": "When it gets hard, tell the person who prayed with you.", "verses": [] }
+      ],
+      "leaderNote": "Follow up with them within a few days.",
+      "home": "Back to the start"
+    }
+  },
+  "prayer": {
+    "heading": "Your prayer",
+    "intro": "Your prayer for today, in your own words.",
+    "empty": "You have not written anything yet. Begin, and answer in your own words.",
+    "copy": "Copy",
+    "copied": "Copied to your clipboard.",
+    "copyFailed": "Could not copy. Select the text and copy it by hand.",
+    "share": "Share",
+    "save": "Save as a file",
+    "saved": "Saved to your downloads.",
+    "fileName": "prayer",
+    "print": "Print",
+    "aloud": "Pray it aloud (large text)",
+    "aloudHeading": "Your prayer",
+    "aloudClose": "Close large text",
+    "edit": "Edit my words"
+  },
+  "draft": {
+    "heading": "Saving",
+    "toggle": "Keep my draft on this device",
+    "explain": "Off by default. When on, your words are kept in this browser on this device only. They are never sent anywhere.",
+    "erase": "Erase my words",
+    "eraseConfirm": "Erase everything you have written, here and on this device?",
+    "erased": "Your words have been erased."
+  },
+  "about": {
+    "heading": "About and privacy",
+    "whoHeading": "Why this exists",
+    "who": [
+      "This app exists only to serve the ministry of Jesus, the Son of God. It shows how he taught us to pray, so that you can pray in your own words. It helps a believer guide someone who is ready to turn to Jesus to pray in their own words. And it lets anyone read and study the whole Bible at their own pace.",
+      "It is free. There are no ads, no accounts, no donations and no tracking."
+    ],
+    "privacyHeading": "Privacy",
+    "privacy": [
+      "The app never sends anything about you. It has no accounts, cookies or analytics, and it uses no other website. The only things it downloads are its own files, including each book of the Bible the first time you open it, and each book's cross-references the first time you open them, from the same place the app comes from.",
+      "The website that hosts the app can see which books and cross-reference files are opened, as with any website. It cannot see your notes or prayers.",
+      "Your words leave the app only if you choose to send them yourself. \"Copy\" puts them on your clipboard. \"Share\" hands them to the app you pick on your own device. \"Save as a file\" puts a text file in your downloads. \"Print\" sends them to your printer.",
+      "Your prayer words are not kept after you close the app unless you turn on \"Keep my draft on this device\". If you do, your words are stored only in this browser, and \"Erase my words\" removes them. Erasing does not remove files you saved or copies you shared.",
+      "While you pray by yourself, your words are also kept for this visit only, in this browser tab, so that they are not lost if you open a chapter of the Bible or your phone closes the tab in the background. They are erased when you close the tab. Nothing is kept beyond the visit unless you turn on \"Keep my draft on this device\". Words typed in \"Share Jesus\" are never stored.",
+      "Bible study remembers the last chapter you read and a few display choices, such as hiding the translators' notes, on this device only, so you can carry on where you left off. Books you open are kept on this device so you can read them offline. Neither is ever sent anywhere.",
+      "My study keeps your notes and bookmarks in this browser on this device only, and only because you wrote them. They are never sent anywhere. A backup file contains your notes as readable text, so take care where you send it.",
+      "While you write a note, it is kept for this visit only, in this browser tab, so that it is not lost if your phone closes the tab in the background. It is erased when you save or cancel the note, or close the tab."
+    ],
+    "sourcesHeading": "Sources",
+    "sources": [
+      "The structure follows the prayer Jesus taught in Matthew 6:5-15 and Luke 11:1-4. Every other quotation is Scripture, shown with its reference.",
+      "Scripture quotations are from the World English Bible (WEB), which is in the public domain. The text was taken from eBible.org. \"World English Bible\" is a trademark of eBible.org.",
+      "Where a reference ends in \"a\" or \"b\", only that part of the verse is shown. The words shown are unchanged.",
+      "Where an excerpt begins or ends partway through a speech, the quotation mark that opens or closes that speech elsewhere is not shown at the start or end of the excerpt.",
+      "The app adds no teaching of its own. The only words that are ours are the step names, headings and buttons, the questions, the short \"Think about\" prompts under them, the start screen, the instruction on the read-through screen, the reminders to pray out loud, and this page. In \"Share Jesus\", the leader notes, the questions and ideas, the instructions on the read-through and phrase screens, and the next steps are ours too. In Bible study, the headings, buttons and the short lines under the Apocrypha shelf are ours, and so are the labels and buttons in My study and the labels around the cross-references.",
+      "The text, book names and translators' notes in Bible study come from the same eBible.org files, by code, unchanged. Whole chapters are shown exactly as published. The translators' notes are marked as theirs and are not Scripture. The WEB's preface and glossary are not included.",
+      "Cross-references are from the Treasury of Scripture Knowledge, in the CrossWire Bible Society's edition (version 1.4) dated about 1880, compiled from the work of Canne, Browne, Blayney, Scott and others. It is in the public domain. Its headings are in the words of the King James Version. A reference that does not match a verse in the WEB is shown as plain text. One exception: the TSK's references to Romans 16:25-27 open Romans 14:24-26, where the WEB prints those verses, as the WEB's own note says."
+    ],
+    "doxologyHeading": "Matthew 6:13",
+    "doxology": "The World English Bible prints one more sentence at the end of Matthew 6:13, with a footnote that some Greek texts omit it. The guided prayer does not show that sentence. Bible study shows Matthew 6 exactly as the WEB publishes it, with that footnote.",
+    "licenseHeading": "License",
+    "license": "The code is released under the MIT License. The Scripture text and the cross-references are in the public domain.",
+    "sourceCodeLabel": "Source code",
+    "sourceCodeUrl": "https://github.com/learntopray/learntopray.github.io",
+    "installHeading": "Add the app to your home screen",
+    "install": [
+      "The app can sit on your home screen like any other app. It then opens in one tap, works offline, and your phone is less likely to erase your notes and bookmarks.",
+      "iPhone or iPad (Safari): tap the Share button (a square with an arrow pointing up), then \"Add to Home Screen\", then \"Add\".",
+      "Android (Chrome): tap the menu (three dots at the top right), then \"Add to Home screen\" or \"Install app\", then confirm.",
+      "Computer (Chrome or Edge): click the install button at the right of the address bar, or open the browser menu and choose to install the app.",
+      "On iPhone and iPad, the app on your home screen keeps its own notes and bookmarks, separate from Safari. To move them across, save a backup file in Safari and open it in the app on your home screen."
+    ],
+    "howHeading": "How it works",
+    "how": [
+      "There are seven steps, in the order Jesus gave. Each step shows his words and asks you one short question at a time. Most questions show a short prayer from Scripture, and each step offers other passages of Scripture that change each day.",
+      "Before you pray, you read your whole prayer through in one place and change anything that is not true or does not sound like you. Then you pray it out loud, one part at a time.",
+      "At the end you see your prayer in your own words. The app never writes a prayer for you, and it never changes your words.",
+      "\"Share Jesus\" helps a believer guide someone who is ready to turn to Jesus. It shows Scripture, asks a few questions, and ends with a prayer in that person's own words, said aloud phrase by phrase. The app never writes the prayer, never says that saying it saves anyone, and never keeps their words on the device.",
+      "Bible study has the whole World English Bible, with the Apocrypha on its own shelf. You can go to any chapter, search, and read offline. Each chapter has its own link, so you can open the same place on another device.",
+      "My study lets you bookmark verses in six colours you can name, write notes that link to passages and to each other, and save a backup file. Under any verse in the 66 books, you can open cross-references from the Treasury of Scripture Knowledge."
+    ]
+  },
+  "bible": {
+    "heading": "Bible study",
+    "continue": "Continue reading: {ref}",
+    "goLabel": "Go to a passage",
+    "goHint": "For example: John 3:16 or Psalm 23",
+    "go": "Go",
+    "notFound": "That passage was not found. Try a book name and a chapter, like Romans 8.",
+    "searchLabel": "Search the Bible",
+    "search": "Search",
+    "searchIn": "Search in",
+    "allBooks": "All books",
+    "shelves": {
+      "ot": "Old Testament",
+      "nt": "New Testament",
+      "ap": "Apocrypha (Deuterocanonical books)"
+    },
+    "apLine": "These books are included in the World English Bible published by eBible.org.",
+    "greekLine": "Esther (Greek) and Daniel (Greek) are the Greek forms of those books.",
+    "books": "Books",
+    "chapters": "Chapters",
+    "chapterLabel": "Chapter {n}",
+    "copyLink": "Copy link",
+    "linkCopied": "Link copied.",
+    "noteMarker": "WEB translators' note {n}",
+    "noteHeading": "WEB translators' note · {ref}",
+    "close": "Close",
+    "showNotes": "Show WEB translators' notes",
+    "showNotesHint": "These notes from the translators explain words and show where old manuscripts differ. They are not Scripture.",
+    "opening": "Opening {book}…",
+    "saved": "Saved on this device for reading offline.",
+    "notHere": "{book} is not on this device yet. Connect to the internet once to open it. After that it will stay on this device for reading offline.",
+    "offlineHeading": "Offline reading",
+    "offlineText": "Each book is kept on this device the first time you open it.",
+    "keepAll": "Keep the whole Bible on this device",
+    "keepAllSize": "About {download} MB to download, and about {stored} MB on this device.",
+    "downloading": "Downloading: {n} of {total} books",
+    "allHere": "The whole Bible is on this device.",
+    "stopped": "The download stopped. Connect to the internet and try again.",
+    "remove": "Remove the Bible from this device",
+    "removeHint": "Your reading place stays. You can download it again at any time.",
+    "found": "{n} verses found for “{q}”",
+    "foundOne": "1 verse found for “{q}”",
+    "none": "No verses found for “{q}”.",
+    "first200": "Showing the first 200. Add another word to narrow the search.",
+    "needAll": "Search needs the whole Bible on this device. It is about {download} MB to download."
+  },
+  "xref": {
+    "heading": "Cross-references",
+    "source": "From the Treasury of Scripture Knowledge (about 1880). An outside source, not Scripture.",
+    "kjv": "The headings are the TSK's, in the words of the King James Version.",
+    "showAll": "Show all ({n})",
+    "openChapter": "Open chapter",
+    "romansLine": "In the WEB these verses are Romans 14:24-26.",
+    "keep": "Keep the cross-references on this device",
+    "keepSize": "About {download} MB to download, and about {stored} MB on this device.",
+    "downloading": "Downloading: {n} of {total} files",
+    "allHere": "The cross-references are on this device.",
+    "remove": "Remove the cross-references from this device",
+    "notHere": "The cross-references for {book} are not on this device yet. Connect to the internet once to open them."
+  },
+  "study": {
+    "myStudy": "My study",
+    "tip": "Tap a verse number to bookmark it or write a note.",
+    "verseButton": "Verse {v}: bookmark or note",
+    "throughVerse": "Through verse",
+    "bookmark": "Bookmark",
+    "removeBookmark": "Remove bookmark",
+    "bookmarked": "Bookmarked: {name}",
+    "writeNote": "Write a note",
+    "editNote": "Edit my note",
+    "mentions": "Your notes that mention this verse",
+    "colors": {
+      "gold": "Gold",
+      "blue": "Blue",
+      "green": "Green",
+      "rose": "Rose",
+      "purple": "Purple",
+      "gray": "Gray"
+    },
+    "noteOn": "My note on {ref}",
+    "newNote": "New note",
+    "titleLabel": "Title (optional)",
+    "titleHint": "Give a note a title to link to it from other notes.",
+    "noteLabel": "My note",
+    "noteHint": "Type a reference like Romans 8:28 and it becomes a link. To link to another note, type its title in double square brackets, like [[The Word]].",
+    "save": "Save note",
+    "cancel": "Cancel",
+    "delete": "Delete note",
+    "deleteConfirm": "Delete this note? This cannot be undone.",
+    "saved": "Note saved on this device.",
+    "saveFailed": "This device would not save the note. Your words are still in the box.",
+    "dupTitle": "Another note already has this title, so links to [[{title}]] would open only the newest one. Change the title, or tap Save note again to keep it.",
+    "noteButton": "My note on {ref}",
+    "noteTitleOn": "Note on {ref}",
+    "untitled": "Untitled note",
+    "olderCopy": "Older copy",
+    "linkedFrom": "Notes that link here",
+    "backTo": "Back to {ref}",
+    "searchNotes": "Search my notes",
+    "inMyNotes": "In my notes",
+    "bookmarks": "Bookmarks",
+    "noBookmarks": "No bookmarks yet.",
+    "nameColors": "Name your colours",
+    "saveNames": "Save names",
+    "notes": "Notes",
+    "noNotes": "No notes yet. Open a chapter and tap a verse number to write one.",
+    "backupHeading": "Backup",
+    "backupText": "Your notes and bookmarks are only on this device. To keep them safe or move them to another device, save a backup file.",
+    "backupWarnStrong": "The backup file contains your notes as readable text.",
+    "backupWarn": "Take care where you send it.",
+    "lastBackup": "Last backup: {date}",
+    "never": "never",
+    "keepSafe": "Phones can erase a website's saved data, for example when browsing data is cleared. Adding the app to your home screen helps keep it. A backup file keeps your notes safe.",
+    "saveBackup": "Save a backup file",
+    "openBackup": "Open a backup",
+    "openConfirm": "Add the notes and bookmarks from this backup to this device? Nothing already here is deleted.",
+    "added": "Added {notes} and {bookmarks}.",
+    "notesOne": "1 note",
+    "notesMany": "{n} notes",
+    "bookmarksOne": "1 bookmark",
+    "bookmarksMany": "{n} bookmarks",
+    "notBackup": "That file is not a backup from this app.",
+    "eraseAll": "Erase all my notes and bookmarks",
+    "eraseAllConfirm": "Erase every note and bookmark on this device? This cannot be undone unless you have a backup file.",
+    "fileName": "teach-us-to-pray-backup"
+  }
+}

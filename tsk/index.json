@@ -1,0 +1,338 @@
+{
+ "source": "https://www.crosswire.org/ftpmirror/pub/sword/packages/rawzip/TSK.zip",
+ "edition": "CrossWire Bible Society, version 1.4",
+ "license": "Public Domain",
+ "version": "e0305c51f1",
+ "books": [
+  {
+   "code": "GEN",
+   "size": 229503,
+   "download": 63044
+  },
+  {
+   "code": "EXO",
+   "size": 175297,
+   "download": 49140
+  },
+  {
+   "code": "LEV",
+   "size": 118965,
+   "download": 31624
+  },
+  {
+   "code": "NUM",
+   "size": 144687,
+   "download": 40455
+  },
+  {
+   "code": "DEU",
+   "size": 158128,
+   "download": 44572
+  },
+  {
+   "code": "JOS",
+   "size": 86480,
+   "download": 25046
+  },
+  {
+   "code": "JDG",
+   "size": 75178,
+   "download": 22347
+  },
+  {
+   "code": "RUT",
+   "size": 10485,
+   "download": 3702
+  },
+  {
+   "code": "1SA",
+   "size": 108108,
+   "download": 31995
+  },
+  {
+   "code": "2SA",
+   "size": 95220,
+   "download": 28386
+  },
+  {
+   "code": "1KI",
+   "size": 128505,
+   "download": 37837
+  },
+  {
+   "code": "2KI",
+   "size": 117814,
+   "download": 34568
+  },
+  {
+   "code": "1CH",
+   "size": 107891,
+   "download": 31869
+  },
+  {
+   "code": "2CH",
+   "size": 135575,
+   "download": 40238
+  },
+  {
+   "code": "EZR",
+   "size": 37600,
+   "download": 11694
+  },
+  {
+   "code": "NEH",
+   "size": 60086,
+   "download": 18292
+  },
+  {
+   "code": "EST",
+   "size": 22048,
+   "download": 7220
+  },
+  {
+   "code": "JOB",
+   "size": 160186,
+   "download": 45663
+  },
+  {
+   "code": "PSA",
+   "size": 504544,
+   "download": 138927
+  },
+  {
+   "code": "PRO",
+   "size": 155443,
+   "download": 42189
+  },
+  {
+   "code": "ECC",
+   "size": 46791,
+   "download": 13686
+  },
+  {
+   "code": "SNG",
+   "size": 26702,
+   "download": 8110
+  },
+  {
+   "code": "ISA",
+   "size": 326563,
+   "download": 90833
+  },
+  {
+   "code": "JER",
+   "size": 307555,
+   "download": 84008
+  },
+  {
+   "code": "LAM",
+   "size": 33344,
+   "download": 9879
+  },
+  {
+   "code": "EZK",
+   "size": 234828,
+   "download": 63381
+  },
+  {
+   "code": "DAN",
+   "size": 77990,
+   "download": 21797
+  },
+  {
+   "code": "HOS",
+   "size": 52532,
+   "download": 15466
+  },
+  {
+   "code": "JOL",
+   "size": 17045,
+   "download": 5447
+  },
+  {
+   "code": "AMO",
+   "size": 33689,
+   "download": 10345
+  },
+  {
+   "code": "OBA",
+   "size": 5491,
+   "download": 1962
+  },
+  {
+   "code": "JON",
+   "size": 9153,
+   "download": 3095
+  },
+  {
+   "code": "MIC",
+   "size": 31822,
+   "download": 9842
+  },
+  {
+   "code": "NAM",
+   "size": 9604,
+   "download": 3265
+  },
+  {
+   "code": "HAB",
+   "size": 15297,
+   "download": 5046
+  },
+  {
+   "code": "ZEP",
+   "size": 16645,
+   "download": 5366
+  },
+  {
+   "code": "HAG",
+   "size": 7825,
+   "download": 2711
+  },
+  {
+   "code": "ZEC",
+   "size": 61604,
+   "download": 17776
+  },
+  {
+   "code": "MAL",
+   "size": 21031,
+   "download": 6773
+  },
+  {
+   "code": "MAT",
+   "size": 228138,
+   "download": 62938
+  },
+  {
+   "code": "MRK",
+   "size": 109418,
+   "download": 30822
+  },
+  {
+   "code": "LUK",
+   "size": 206371,
+   "download": 57312
+  },
+  {
+   "code": "JHN",
+   "size": 184112,
+   "download": 48800
+  },
+  {
+   "code": "ACT",
+   "size": 214646,
+   "download": 58855
+  },
+  {
+   "code": "ROM",
+   "size": 122857,
+   "download": 33746
+  },
+  {
+   "code": "1CO",
+   "size": 91658,
+   "download": 25377
+  },
+  {
+   "code": "2CO",
+   "size": 68308,
+   "download": 19177
+  },
+  {
+   "code": "GAL",
+   "size": 40424,
+   "download": 11561
+  },
+  {
+   "code": "EPH",
+   "size": 53104,
+   "download": 15025
+  },
+  {
+   "code": "PHP",
+   "size": 34978,
+   "download": 10271
+  },
+  {
+   "code": "COL",
+   "size": 33344,
+   "download": 9853
+  },
+  {
+   "code": "1TH",
+   "size": 29920,
+   "download": 8752
+  },
+  {
+   "code": "2TH",
+   "size": 13963,
+   "download": 4448
+  },
+  {
+   "code": "1TI",
+   "size": 37877,
+   "download": 11251
+  },
+  {
+   "code": "2TI",
+   "size": 26908,
+   "download": 8250
+  },
+  {
+   "code": "TIT",
+   "size": 14570,
+   "download": 4716
+  },
+  {
+   "code": "PHM",
+   "size": 3698,
+   "download": 1420
+  },
+  {
+   "code": "HEB",
+   "size": 88632,
+   "download": 25215
+  },
+  {
+   "code": "JAS",
+   "size": 33101,
+   "download": 10173
+  },
+  {
+   "code": "1PE",
+   "size": 38760,
+   "download": 11552
+  },
+  {
+   "code": "2PE",
+   "size": 17936,
+   "download": 5792
+  },
+  {
+   "code": "1JN",
+   "size": 31265,
+   "download": 8716
+  },
+  {
+   "code": "2JN",
+   "size": 2521,
+   "download": 989
+  },
+  {
+   "code": "3JN",
+   "size": 2557,
+   "download": 1053
+  },
+  {
+   "code": "JUD",
+   "size": 7961,
+   "download": 2850
+  },
+  {
+   "code": "REV",
+   "size": 104617,
+   "download": 28338
+  }
+ ]
+}
