@@ -1,4 +1,8 @@
-"""Checks to run before every release. Usage: python tools/verify.py [--zip path]
+"""Checks to run before every release. Usage: python tools/verify.py [--zip path | --download]
+
+The WEB source is the pinned copy, sources/eng-web_usfm.zip, whose SHA-256 is recorded in
+sources/eng-web_usfm.json; the checks stop if the copy does not match it. --download compares
+with today's file from eBible.org instead, to see whether the WEB has been revised since.
 
 1. Bundled Scripture equals a fresh extraction from the source.
 2. Every verse reference in every language file exists in its Scripture file.

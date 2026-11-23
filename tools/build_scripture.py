@@ -2,15 +2,21 @@
 
 Source: https://eBible.org/Scriptures/eng-web_usfm.zip (public domain).
 No verse text is typed by hand: every word in the output comes from the
-downloaded source. Uses the Python standard library only.
+source. Uses the Python standard library only.
+
+The source is pinned: the copy we build from is kept at sources/eng-web_usfm.zip, and
+sources/eng-web_usfm.json records its download date and SHA-256. Builds and checks use
+that copy and stop if its checksum differs. eBible.org revises the WEB from time to time;
+--download fetches today's file instead, to see what a revision would change.
 
 Usage:
-    python tools/build_scripture.py            # download, extract, write JSON
-    python tools/build_scripture.py --check    # extract and compare with the bundled JSON
-    python tools/build_scripture.py --zip path # use an already downloaded zip
+    python tools/build_scripture.py              # extract from the pinned copy, write JSON
+    python tools/build_scripture.py --check      # extract and compare with the bundled JSON
+    python tools/build_scripture.py --zip path   # use another copy of the zip
+    python tools/build_scripture.py --download   # use today's file from eBible.org
 """
 import argparse
-import datetime
+import hashlib
 import io
 import json
 import pathlib
@@ -22,6 +28,30 @@ import zipfile
 SOURCE_URL = "https://eBible.org/Scriptures/eng-web_usfm.zip"
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "scripture" / "en-web.json"
+PINNED = ROOT / "sources" / "eng-web_usfm.zip"
+PINNED_RECORD = ROOT / "sources" / "eng-web_usfm.json"
+
+
+def pinned_record():
+    return json.loads(PINNED_RECORD.read_text(encoding="utf-8"))
+
+
+def add_source_args(ap):
+    ap.add_argument("--zip", help="path to another copy of eng-web_usfm.zip")
+    ap.add_argument("--download", action="store_true", help="use today's file from eBible.org, not the pinned copy")
+
+
+def source_bytes(args):
+    """The WEB zip: the pinned copy (checksum checked), or --zip, or --download."""
+    if args.zip:
+        return pathlib.Path(args.zip).read_bytes()
+    if args.download:
+        req = urllib.request.Request(SOURCE_URL, headers={"User-Agent": "teach-us-to-pray build script"})
+        return urllib.request.urlopen(req, timeout=120).read()
+    data = PINNED.read_bytes()
+    if hashlib.sha256(data).hexdigest() != pinned_record()["sha256"]:
+        raise SystemExit("sources/eng-web_usfm.zip does not match the SHA-256 in sources/eng-web_usfm.json")
+    return data
 
 # (book code, chapter, first verse, last verse)
 PASSAGES = [
@@ -143,16 +173,10 @@ def extract(zip_bytes):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--zip", help="path to an already downloaded eng-web_usfm.zip")
+    add_source_args(ap)
     ap.add_argument("--check", action="store_true", help="compare with the bundled JSON instead of writing")
     args = ap.parse_args()
-
-    if args.zip:
-        data = pathlib.Path(args.zip).read_bytes()
-    else:
-        req = urllib.request.Request(SOURCE_URL, headers={"User-Agent": "teach-us-to-pray build script"})
-        data = urllib.request.urlopen(req, timeout=120).read()
-    verses = extract(data)
+    verses = extract(source_bytes(args))
 
     if args.check:
         bundled = json.loads(OUT.read_text(encoding="utf-8"))["verses"]
@@ -167,11 +191,11 @@ def main():
         "abbreviation": "WEB",
         "license": "Public Domain",
         "source": SOURCE_URL,
-        "retrieved": datetime.date.today().isoformat(),
+        "retrieved": pinned_record()["downloaded"],
         "verses": verses,
     }
     OUT.parent.mkdir(exist_ok=True)
-    OUT.write_text(json.dumps(doc, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    OUT.write_text(json.dumps(doc, ensure_ascii=False, indent=1) + "\n", encoding="utf-8", newline="\n")
     sys.stdout.reconfigure(encoding="utf-8")
     for ref, text in verses.items():
         print(f"{ref}\t{text}")

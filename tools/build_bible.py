@@ -17,9 +17,11 @@ Every chapter is checked as it is built: the words shown, in order, must equal t
 source chapter with only its markup, notes and cross-references taken out.
 
 Usage:
-    python tools/build_bible.py            # download, extract, write files
-    python tools/build_bible.py --check    # extract and compare with the files in bible/
-    python tools/build_bible.py --zip path # use an already downloaded zip
+    python tools/build_bible.py              # extract from the pinned copy, write files
+    python tools/build_bible.py --check      # extract and compare with the files in bible/
+    python tools/build_bible.py --zip path   # use another copy of the zip
+    python tools/build_bible.py --download   # use today's file from eBible.org
+The pinned copy is sources/eng-web_usfm.zip (see tools/build_scripture.py).
 """
 import argparse
 import gzip
@@ -29,11 +31,10 @@ import json
 import pathlib
 import re
 import sys
-import urllib.request
 import zipfile
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from build_scripture import SOURCE_URL, clean  # noqa: E402  the same cleaning as the prayer screens
+from build_scripture import SOURCE_URL, add_source_args, clean, source_bytes  # noqa: E402  the same cleaning as the prayer screens
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "bible"
@@ -198,15 +199,10 @@ def extract(zip_bytes):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--zip", help="path to an already downloaded eng-web_usfm.zip")
+    add_source_args(ap)
     ap.add_argument("--check", action="store_true", help="compare with the files in bible/ instead of writing")
     args = ap.parse_args()
-    if args.zip:
-        data = pathlib.Path(args.zip).read_bytes()
-    else:
-        req = urllib.request.Request(SOURCE_URL, headers={"User-Agent": "teach-us-to-pray build script"})
-        data = urllib.request.urlopen(req, timeout=120).read()
-    files = extract(data)
+    files = extract(source_bytes(args))
     if args.check:
         present = {p.name for p in OUT.glob("*.json")}
         bad = sorted(n for n in set(files) | present if not (OUT / n).exists() or (OUT / n).read_bytes() != files.get(n))

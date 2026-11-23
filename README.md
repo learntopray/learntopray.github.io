@@ -43,7 +43,7 @@ Then open `http://localhost:8000`. Opening `index.html` directly from the folder
 python tools/verify.py
 ```
 
-This confirms that the bundled verses and every Bible study book (each chapter word for word, and every translators' note) match the World English Bible source exactly, that every reference resolves, that the offline file list is complete, that the core app (everything but the books) stays under its size budget, that the code fetches only the app's own files, and that there is no outside address or cookie code. Pass `--zip path/to/eng-web_usfm.zip` to use a downloaded copy of the source.
+This confirms that the bundled verses and every Bible study book (each chapter word for word, and every translators' note) match the World English Bible source exactly, that every reference resolves, that the offline file list is complete, that the core app (everything but the books) stays under its size budget, that the code fetches only the app's own files, and that there is no outside address or cookie code. The source is pinned: the WEB files the app was built from are kept at `sources/eng-web_usfm.zip`, and `sources/eng-web_usfm.json` records where and when they were downloaded and their SHA-256. The builds and checks use that copy, and stop if its checksum differs. Pass `--download` to compare with today's file from eBible.org instead, which shows whether the WEB has been revised since. Pass `--tsk-zip path/to/TSK.zip` to check the cross-references.
 
 ## Scripture
 
@@ -60,7 +60,9 @@ On the prayer screens, Matthew 6:13 is shown as 6:13a, ending at "deliver us fro
 
 ### Bible study
 
-`python tools/build_bible.py` writes `bible/` from the same source. It shows every book as published and leaves out only: the WEB preface and glossary, the introductions eBible.org places before chapter 1 of some books (kept: the Prologue of Sirach), the WEB's cross-references, and the translators' notes listed in `LEFT_OUT_NOTES`. Book names and the chapter label for Psalms come from the source. When the book files change, their version in `bible/index.json` changes, and `BIBLE` in `sw.js` must be set to the same version (verify.py checks this).
+`python tools/build_bible.py` writes `bible/` from the same pinned source. It shows every book as published and leaves out only: the WEB preface and glossary, the introductions eBible.org places before chapter 1 of some books (kept: the Prologue of Sirach), the WEB's cross-references, and the translators' notes listed in `LEFT_OUT_NOTES`. Book names and the chapter label for Psalms come from the source. When the book files change, their version in `bible/index.json` changes, and `BIBLE` in `sw.js` must be set to the same version (verify.py checks this).
+
+To move to a revised WEB: download the new zip into `sources/`, update `sources/eng-web_usfm.json` (date, SHA-256, size), run both build scripts, list every changed verse for review, and update the date in the About page's Sources line.
 
 Each step has a pool of related passages. Two are shown each day, chosen from the date alone, and the rest sit under "More from Scripture for this step".
 
