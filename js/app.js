@@ -9,7 +9,8 @@
  * - Pray by myself: the words are kept for this visit in sessionStorage (erased when
  *   the tab closes), and in localStorage only if "keep my draft on this device" is on.
  * - Share Jesus: words are held in memory only and never stored, whatever that setting is.
- * - Bible study: the last chapter read and the translators' notes setting (localStorage),
+ * - Bible study: the last chapter read, the translators' notes setting, and which Bible version
+ *   the kept books were last checked against (localStorage),
  *   and books opened or downloaded (the Cache Storage named after the Bible version).
  * - Cross-references: each book's file, once opened (the Cache Storage named after the TSK version).
  * - Listen: its settings (speed, voice, announcements, keep screen on) and where listening
@@ -28,6 +29,7 @@
   const HIDE_NOTES_KEY = 'teach-us-to-pray-hide-notes';
   const HIDE_SAVED_KEY = 'teach-us-to-pray-hide-saved-line'; // the "Saved on this device" line was closed
   const HIDE_TIP_KEY = 'teach-us-to-pray-hide-verse-tip';     // the "Tap a verse number" line was closed
+  const BIBLE_CHECKED_KEY = 'teach-us-to-pray-bible-checked'; // the Bible version whose kept books were checked
   const STUDY_KEY = 'teach-us-to-pray-study';                 // My study: notes and bookmarks
   const NOTE_DRAFT_KEY = 'teach-us-to-pray-note-draft';       // sessionStorage: a note not yet saved
 
@@ -696,6 +698,25 @@
     if (!res.ok) throw new Error('download');
     if (cache) await cache.put(url, res.clone());
     return res;
+  }
+
+  // Once for each Bible version, while online: every book kept on this device is checked
+  // against its checksum, and any that does not match is downloaded again.
+  async function repairKeptBooks() {
+    if (store.get(BIBLE_CHECKED_KEY) === IDX.version) return;
+    try {
+      if (window.caches && await caches.has(bibleCacheName())) {
+        const cache = await openCache();
+        for (const req of await cache.keys()) {
+          const code = req.url.split('/').pop().replace(/\.json$/, '');
+          if (bookInfo(code) && !(await bookMatches(code, await cache.match(req)))) {
+            await freshBook(cache, 'bible/' + code + '.json');
+            BOOKS.delete(code);
+          }
+        }
+      }
+      store.set(BIBLE_CHECKED_KEY, IDX.version);
+    } catch (e) { /* offline: checked on a later visit */ }
   }
 
   // Open a book: from this device if it is kept here, otherwise download it and keep it.
@@ -2401,6 +2422,7 @@
     });
     loadDraft();
     initListen();
+    repairKeptBooks();
     // The skip link's target is #main, which is not a screen: never route to it.
     // A route change made by Listen following the reading leaves the focus where it is.
     window.addEventListener('hashchange', () => { if (location.hash === '#main') return; const quiet = quietRoute; quietRoute = false; render(!quiet); });
