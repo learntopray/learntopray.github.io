@@ -8,7 +8,7 @@ Approved with these changes, now built into `lang/en.json` (`listen`) and the Ab
 4. The How it works paragraph adds: "It says the book and chapter before each chapter unless you turn that off."
 5. Psalm 119's letter headings are not read. Psalm titles are.
 
-Added while building, for review: the word **Settings** on the fold-out that holds Speed, Voice, Sleep timer, the announcements setting and Keep screen on. When the end of the Apocrypha is spoken, the shelf name is said without its brackets ("This is the end of the Apocrypha."); on screen it shows the full shelf name.
+Added while building, and approved on 2026-11-22: the word **Settings** on the fold-out that holds Speed, Voice, Sleep timer, the announcements setting and Keep screen on. When the end of the Apocrypha is spoken, the shelf name is said without its brackets ("This is the end of the Apocrypha."); on screen it shows the full shelf name.
 
 The tables below are the first draft; the opening names in `lang/en.json` are the approved ones.
 
