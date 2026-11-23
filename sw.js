@@ -7,7 +7,7 @@
  * version in bible/index.json (tools/verify.py checks they match), so books kept on
  * a phone survive app updates and are replaced only when the Bible files change.
  * Cross-reference files (tsk/<CODE>.json) are kept the same way, in TSK. */
-const CACHE = 'teach-us-to-pray-v21';
+const CACHE = 'teach-us-to-pray-v22';
 const BIBLE = 'teach-us-to-pray-bible-4ed99b58a6';
 const TSK = 'teach-us-to-pray-tsk-e0305c51f1';
 const FILES = [
@@ -39,7 +39,11 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
+  // The app asks for a book with 'reload' when the copy kept here is not the current edition.
+  if (event.request.cache === 'reload') { event.respondWith(fetch(event.request)); return; }
+  // A book is answered only from the current BIBLE cache, never from an earlier edition's.
+  const book = /\/bible\/[A-Z0-9]{3}\.json$/.test(new URL(event.request.url).pathname);
   event.respondWith(
-    caches.match(event.request, { ignoreSearch: true }).then((hit) => hit || fetch(event.request))
+    caches.match(event.request, book ? { ignoreSearch: true, cacheName: BIBLE } : { ignoreSearch: true }).then((hit) => hit || fetch(event.request))
   );
 });

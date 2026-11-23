@@ -679,12 +679,34 @@
     try { return window.caches && await caches.has(bibleCacheName()) ? await caches.match(url, { cacheName: bibleCacheName() }) : null; } catch (e) { return null; }
   }
 
+  // Each book's checksum is in bible/index.json. A book kept on this device that does not
+  // match it (an earlier edition, kept by mistake during an update) is downloaded again.
+  async function bookMatches(code, res) {
+    const info = bookInfo(code);
+    if (!res || !info || !info.sha256 || !(window.crypto && crypto.subtle)) return !!res;
+    try {
+      const hash = new Uint8Array(await crypto.subtle.digest('SHA-256', await res.clone().arrayBuffer()));
+      return Array.from(hash, (x) => x.toString(16).padStart(2, '0')).join('').startsWith(info.sha256);
+    } catch (e) { return true; }
+  }
+  // Download a book again, past any copy kept on the device (the service worker lets
+  // 'reload' requests through to the network).
+  async function freshBook(cache, url) {
+    const res = await fetch(url, { cache: 'reload' });
+    if (!res.ok) throw new Error('download');
+    if (cache) await cache.put(url, res.clone());
+    return res;
+  }
+
   // Open a book: from this device if it is kept here, otherwise download it and keep it.
   async function getBook(code) {
     if (BOOKS.has(code)) return BOOKS.get(code);
     const url = 'bible/' + code + '.json';
     let res = await keptHere(url);
     let saved = !!res;
+    if (res && !(await bookMatches(code, res))) {
+      try { res = await freshBook(await openCache(), url); } catch (e) { /* offline: read the copy kept here until the next visit online */ }
+    }
     if (!res) {
       res = await fetch(url);
       if (!res.ok) throw new Error('not found');
@@ -720,7 +742,7 @@
           const res = await fetch(url);
           if (!res.ok) throw new Error('download');
           await cache.put(url, res);
-        }
+        } else if (!(await bookMatches(b.code, await cache.match(url)))) await freshBook(cache, url);
         n += 1;
         status.textContent = fill(B().downloading, { n, total: IDX.books.length });
       }
@@ -1706,6 +1728,8 @@
           const res = await fetch(url);
           if (!res.ok) throw new Error('download');
           await open[name].cache.put(url, res);
+        } else if (url.startsWith('bible/') && !(await bookMatches(url.slice(6, 9), await open[name].cache.match(url)))) {
+          await freshBook(open[name].cache, url);
         }
         n += 1;
         status.textContent = fill(O().downloading, { n, total: jobs.length });

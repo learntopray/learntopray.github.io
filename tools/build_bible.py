@@ -185,8 +185,11 @@ def extract(zip_bytes):
             title, chapters, label = books[code]
             data = (json.dumps({"code": code, "name": title, "chapters": chapters}, ensure_ascii=False, separators=(",", ":")) + "\n").encode("utf-8")
             files[f"{code}.json"] = data
+            # sha256: the start of the file's checksum, so the app can tell a book kept on a
+            # device from an earlier edition of it.
             entry = {"code": code, "name": title, "shelf": shelf, "chapters": len(chapters),
-                     "size": len(data), "download": len(gzip.compress(data, 9))}
+                     "size": len(data), "download": len(gzip.compress(data, 9)),
+                     "sha256": hashlib.sha256(data).hexdigest()[:16]}
             if label:
                 entry["chapterName"] = label
             index.append(entry)

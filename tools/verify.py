@@ -215,7 +215,7 @@ for p in shipped:
             # Allowed: a quoted app path, the Bible book path built in getBook and keepWholeBible
             # (`url`, always 'bible/' + a book code), the Scripture file named in the language file,
             # and, in the service worker, the page's own request (the page only makes same-site requests).
-            if not re.match(r"\s*('[a-z]+/|url$|L\.meta\.scriptureFile$|event\.request$)", target):
+            if not re.match(r"\s*('[a-z]+/|url$|url, \{ cache: 'reload' \}$|L\.meta\.scriptureFile$|event\.request$)", target):
                 problems.append(f"{p.name}: fetch of something that is not an app file: {target}")
 if "default-src 'self'" not in (ROOT / "index.html").read_text(encoding="utf-8"):
     problems.append("index.html must keep its Content-Security-Policy (requests to its own site only)")

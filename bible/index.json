@@ -11,7 +11,8 @@
    "shelf": "ot",
    "chapters": 50,
    "size": 206823,
-   "download": 62057
+   "download": 62057,
+   "sha256": "9fff47e465fea3ee"
   },
   {
    "code": "EXO",
@@ -19,7 +20,8 @@
    "shelf": "ot",
    "chapters": 40,
    "size": 176070,
-   "download": 49526
+   "download": 49526,
+   "sha256": "aee58de63876f248"
   },
   {
    "code": "LEV",
@@ -27,7 +29,8 @@
    "shelf": "ot",
    "chapters": 27,
    "size": 130516,
-   "download": 31790
+   "download": 31790,
+   "sha256": "1a3362b263b588f2"
   },
   {
    "code": "NUM",
@@ -35,7 +38,8 @@
    "shelf": "ot",
    "chapters": 36,
    "size": 181882,
-   "download": 46154
+   "download": 46154,
+   "sha256": "d68cc9b1c625e59c"
   },
   {
    "code": "DEU",
@@ -43,7 +47,8 @@
    "shelf": "ot",
    "chapters": 34,
    "size": 150898,
-   "download": 43023
+   "download": 43023,
+   "sha256": "05d24dbe5869d574"
   },
   {
    "code": "JOS",
@@ -51,7 +56,8 @@
    "shelf": "ot",
    "chapters": 24,
    "size": 101648,
-   "download": 28510
+   "download": 28510,
+   "sha256": "485b7e696961d1b1"
   },
   {
    "code": "JDG",
@@ -59,7 +65,8 @@
    "shelf": "ot",
    "chapters": 21,
    "size": 102565,
-   "download": 31187
+   "download": 31187,
+   "sha256": "b08769bce5224666"
   },
   {
    "code": "RUT",
@@ -67,7 +74,8 @@
    "shelf": "ot",
    "chapters": 4,
    "size": 14121,
-   "download": 5244
+   "download": 5244,
+   "sha256": "730d77650cf1f3c5"
   },
   {
    "code": "1SA",
@@ -75,7 +83,8 @@
    "shelf": "ot",
    "chapters": 31,
    "size": 134362,
-   "download": 41767
+   "download": 41767,
+   "sha256": "39455aa22be16f3b"
   },
   {
    "code": "2SA",
@@ -83,7 +92,8 @@
    "shelf": "ot",
    "chapters": 24,
    "size": 111225,
-   "download": 35410
+   "download": 35410,
+   "sha256": "18dbf085071f0ee3"
   },
   {
    "code": "1KI",
@@ -91,7 +101,8 @@
    "shelf": "ot",
    "chapters": 22,
    "size": 130959,
-   "download": 39542
+   "download": 39542,
+   "sha256": "9c9711a08b1fd60f"
   },
   {
    "code": "2KI",
@@ -99,7 +110,8 @@
    "shelf": "ot",
    "chapters": 25,
    "size": 125518,
-   "download": 36009
+   "download": 36009,
+   "sha256": "54c35e2892ab787b"
   },
   {
    "code": "1CH",
@@ -107,7 +119,8 @@
    "shelf": "ot",
    "chapters": 29,
    "size": 115841,
-   "download": 35995
+   "download": 35995,
+   "sha256": "a32b46cc4ddef64a"
   },
   {
    "code": "2CH",
@@ -115,7 +128,8 @@
    "shelf": "ot",
    "chapters": 36,
    "size": 144300,
-   "download": 42592
+   "download": 42592,
+   "sha256": "07711376b699d889"
   },
   {
    "code": "EZR",
@@ -123,7 +137,8 @@
    "shelf": "ot",
    "chapters": 10,
    "size": 42783,
-   "download": 13443
+   "download": 13443,
+   "sha256": "2283cdcea9b61987"
   },
   {
    "code": "NEH",
@@ -131,7 +146,8 @@
    "shelf": "ot",
    "chapters": 13,
    "size": 59843,
-   "download": 19549
+   "download": 19549,
+   "sha256": "ef9777ea721e24a5"
   },
   {
    "code": "EST",
@@ -139,7 +155,8 @@
    "shelf": "ot",
    "chapters": 10,
    "size": 31487,
-   "download": 9880
+   "download": 9880,
+   "sha256": "f88fe138d0695b19"
   },
   {
    "code": "JOB",
@@ -147,7 +164,8 @@
    "shelf": "ot",
    "chapters": 42,
    "size": 116711,
-   "download": 37230
+   "download": 37230,
+   "sha256": "769c805af3e1dc64"
   },
   {
    "code": "PSA",
@@ -156,6 +174,7 @@
    "chapters": 150,
    "size": 284594,
    "download": 83158,
+   "sha256": "bf5e2fbbe1fd4b47",
    "chapterName": "Psalm"
   },
   {
@@ -164,7 +183,8 @@
    "shelf": "ot",
    "chapters": 31,
    "size": 98546,
-   "download": 29987
+   "download": 29987,
+   "sha256": "e5093ac538e4f95c"
   },
   {
    "code": "ECC",
@@ -172,7 +192,8 @@
    "shelf": "ot",
    "chapters": 12,
    "size": 30631,
-   "download": 10627
+   "download": 10627,
+   "sha256": "9c619d0615bf189b"
   },
   {
    "code": "SNG",
@@ -180,7 +201,8 @@
    "shelf": "ot",
    "chapters": 8,
    "size": 18176,
-   "download": 6033
+   "download": 6033,
+   "sha256": "ce5afb0a6dc1b13b"
   },
   {
    "code": "ISA",
@@ -188,7 +210,8 @@
    "shelf": "ot",
    "chapters": 66,
    "size": 222625,
-   "download": 69491
+   "download": 69491,
+   "sha256": "f74836a828f3124a"
   },
   {
    "code": "JER",
@@ -196,7 +219,8 @@
    "shelf": "ot",
    "chapters": 52,
    "size": 247262,
-   "download": 71231
+   "download": 71231,
+   "sha256": "dcb9c08be1014bcd"
   },
   {
    "code": "LAM",
@@ -204,7 +228,8 @@
    "shelf": "ot",
    "chapters": 5,
    "size": 23453,
-   "download": 7742
+   "download": 7742,
+   "sha256": "e25d8bfa9cc12b7f"
   },
   {
    "code": "EZK",
@@ -212,7 +237,8 @@
    "shelf": "ot",
    "chapters": 48,
    "size": 217383,
-   "download": 59132
+   "download": 59132,
+   "sha256": "3db449f2d7ee4dd5"
   },
   {
    "code": "DAN",
@@ -220,7 +246,8 @@
    "shelf": "ot",
    "chapters": 12,
    "size": 65018,
-   "download": 20055
+   "download": 20055,
+   "sha256": "c96f197a6c4659c3"
   },
   {
    "code": "HOS",
@@ -228,7 +255,8 @@
    "shelf": "ot",
    "chapters": 14,
    "size": 33899,
-   "download": 11150
+   "download": 11150,
+   "sha256": "eaee19e894a2736e"
   },
   {
    "code": "JOL",
@@ -236,7 +264,8 @@
    "shelf": "ot",
    "chapters": 3,
    "size": 13278,
-   "download": 4649
+   "download": 4649,
+   "sha256": "9982eca527d4845d"
   },
   {
    "code": "AMO",
@@ -244,7 +273,8 @@
    "shelf": "ot",
    "chapters": 9,
    "size": 25934,
-   "download": 8532
+   "download": 8532,
+   "sha256": "02c2a9afe81f3280"
   },
   {
    "code": "OBA",
@@ -252,7 +282,8 @@
    "shelf": "ot",
    "chapters": 1,
    "size": 3826,
-   "download": 1787
+   "download": 1787,
+   "sha256": "294852ef45cf2582"
   },
   {
    "code": "JON",
@@ -260,7 +291,8 @@
    "shelf": "ot",
    "chapters": 4,
    "size": 7446,
-   "download": 3067
+   "download": 3067,
+   "sha256": "a4917537ab934d79"
   },
   {
    "code": "MIC",
@@ -268,7 +300,8 @@
    "shelf": "ot",
    "chapters": 7,
    "size": 20012,
-   "download": 7187
+   "download": 7187,
+   "sha256": "0511b2157c17d91c"
   },
   {
    "code": "NAM",
@@ -276,7 +309,8 @@
    "shelf": "ot",
    "chapters": 3,
    "size": 7280,
-   "download": 3295
+   "download": 3295,
+   "sha256": "77197fd872f88406"
   },
   {
    "code": "HAB",
@@ -284,7 +318,8 @@
    "shelf": "ot",
    "chapters": 3,
    "size": 8824,
-   "download": 3830
+   "download": 3830,
+   "sha256": "817aceae99ea3827"
   },
   {
    "code": "ZEP",
@@ -292,7 +327,8 @@
    "shelf": "ot",
    "chapters": 3,
    "size": 9100,
-   "download": 3778
+   "download": 3778,
+   "sha256": "41fa0f3b8bceeb2c"
   },
   {
    "code": "HAG",
@@ -300,7 +336,8 @@
    "shelf": "ot",
    "chapters": 2,
    "size": 6288,
-   "download": 2386
+   "download": 2386,
+   "sha256": "20915d143855fbb7"
   },
   {
    "code": "ZEC",
@@ -308,7 +345,8 @@
    "shelf": "ot",
    "chapters": 14,
    "size": 35733,
-   "download": 11819
+   "download": 11819,
+   "sha256": "17c1646a78c1bee0"
   },
   {
    "code": "MAL",
@@ -316,7 +354,8 @@
    "shelf": "ot",
    "chapters": 4,
    "size": 10031,
-   "download": 4000
+   "download": 4000,
+   "sha256": "ea50acfe004c67b1"
   },
   {
    "code": "MAT",
@@ -324,7 +363,8 @@
    "shelf": "nt",
    "chapters": 28,
    "size": 139344,
-   "download": 44502
+   "download": 44502,
+   "sha256": "1d9f7a710cb89a83"
   },
   {
    "code": "MRK",
@@ -332,7 +372,8 @@
    "shelf": "nt",
    "chapters": 16,
    "size": 85992,
-   "download": 28783
+   "download": 28783,
+   "sha256": "d57d84033f263206"
   },
   {
    "code": "LUK",
@@ -340,7 +381,8 @@
    "shelf": "nt",
    "chapters": 24,
    "size": 144194,
-   "download": 48268
+   "download": 48268,
+   "sha256": "86bd9191b01bec61"
   },
   {
    "code": "JHN",
@@ -348,7 +390,8 @@
    "shelf": "nt",
    "chapters": 21,
    "size": 110081,
-   "download": 34033
+   "download": 34033,
+   "sha256": "e4e2d9744176a79a"
   },
   {
    "code": "ACT",
@@ -356,7 +399,8 @@
    "shelf": "nt",
    "chapters": 28,
    "size": 139144,
-   "download": 46394
+   "download": 46394,
+   "sha256": "8e60405f6240380f"
   },
   {
    "code": "ROM",
@@ -364,7 +408,8 @@
    "shelf": "nt",
    "chapters": 16,
    "size": 56272,
-   "download": 19133
+   "download": 19133,
+   "sha256": "75f143154e9b29af"
   },
   {
    "code": "1CO",
@@ -372,7 +417,8 @@
    "shelf": "nt",
    "chapters": 16,
    "size": 53624,
-   "download": 18266
+   "download": 18266,
+   "sha256": "0ab8efde363f50c8"
   },
   {
    "code": "2CO",
@@ -380,7 +426,8 @@
    "shelf": "nt",
    "chapters": 13,
    "size": 34694,
-   "download": 12573
+   "download": 12573,
+   "sha256": "0916eefefd4f7cce"
   },
   {
    "code": "GAL",
@@ -388,7 +435,8 @@
    "shelf": "nt",
    "chapters": 6,
    "size": 18265,
-   "download": 7053
+   "download": 7053,
+   "sha256": "cecd0e910709a9b8"
   },
   {
    "code": "EPH",
@@ -396,7 +444,8 @@
    "shelf": "nt",
    "chapters": 6,
    "size": 17977,
-   "download": 6714
+   "download": 6714,
+   "sha256": "2907c131336512fe"
   },
   {
    "code": "PHP",
@@ -404,7 +453,8 @@
    "shelf": "nt",
    "chapters": 4,
    "size": 12889,
-   "download": 5196
+   "download": 5196,
+   "sha256": "858f59deacc0553f"
   },
   {
    "code": "COL",
@@ -412,7 +462,8 @@
    "shelf": "nt",
    "chapters": 4,
    "size": 11841,
-   "download": 4761
+   "download": 4761,
+   "sha256": "ca0d494a3812c089"
   },
   {
    "code": "1TH",
@@ -420,7 +471,8 @@
    "shelf": "nt",
    "chapters": 5,
    "size": 10687,
-   "download": 4265
+   "download": 4265,
+   "sha256": "27c7c6bfc81eb201"
   },
   {
    "code": "2TH",
@@ -428,7 +480,8 @@
    "shelf": "nt",
    "chapters": 3,
    "size": 6105,
-   "download": 2542
+   "download": 2542,
+   "sha256": "7f8a022efc0d49c3"
   },
   {
    "code": "1TI",
@@ -436,7 +489,8 @@
    "shelf": "nt",
    "chapters": 6,
    "size": 14381,
-   "download": 5787
+   "download": 5787,
+   "sha256": "57a1127e1e89243f"
   },
   {
    "code": "2TI",
@@ -444,7 +498,8 @@
    "shelf": "nt",
    "chapters": 4,
    "size": 9860,
-   "download": 4301
+   "download": 4301,
+   "sha256": "2c58e70646fc485d"
   },
   {
    "code": "TIT",
@@ -452,7 +507,8 @@
    "shelf": "nt",
    "chapters": 3,
    "size": 5639,
-   "download": 2578
+   "download": 2578,
+   "sha256": "0ecabdcd5ed1c49b"
   },
   {
    "code": "PHM",
@@ -460,7 +516,8 @@
    "shelf": "nt",
    "chapters": 1,
    "size": 2626,
-   "download": 1289
+   "download": 1289,
+   "sha256": "34a57daf57c3566b"
   },
   {
    "code": "HEB",
@@ -468,7 +525,8 @@
    "shelf": "nt",
    "chapters": 13,
    "size": 41549,
-   "download": 14913
+   "download": 14913,
+   "sha256": "dd56e08963638398"
   },
   {
    "code": "JAS",
@@ -476,7 +534,8 @@
    "shelf": "nt",
    "chapters": 5,
    "size": 13425,
-   "download": 5559
+   "download": 5559,
+   "sha256": "a05639148aba1858"
   },
   {
    "code": "1PE",
@@ -484,7 +543,8 @@
    "shelf": "nt",
    "chapters": 5,
    "size": 14844,
-   "download": 6059
+   "download": 6059,
+   "sha256": "69f9bda94f83d694"
   },
   {
    "code": "2PE",
@@ -492,7 +552,8 @@
    "shelf": "nt",
    "chapters": 3,
    "size": 9322,
-   "download": 3946
+   "download": 3946,
+   "sha256": "acc80ce23dd4d3df"
   },
   {
    "code": "1JN",
@@ -500,7 +561,8 @@
    "shelf": "nt",
    "chapters": 5,
    "size": 14505,
-   "download": 4673
+   "download": 4673,
+   "sha256": "f94364f3a26a77b2"
   },
   {
    "code": "2JN",
@@ -508,7 +570,8 @@
    "shelf": "nt",
    "chapters": 1,
    "size": 1764,
-   "download": 883
+   "download": 883,
+   "sha256": "4e809e9c70835bf0"
   },
   {
    "code": "3JN",
@@ -516,7 +579,8 @@
    "shelf": "nt",
    "chapters": 1,
    "size": 1718,
-   "download": 888
+   "download": 888,
+   "sha256": "719edfe83910171f"
   },
   {
    "code": "JUD",
@@ -524,7 +588,8 @@
    "shelf": "nt",
    "chapters": 1,
    "size": 3983,
-   "download": 2014
+   "download": 2014,
+   "sha256": "ea2fe4151dcc1471"
   },
   {
    "code": "REV",
@@ -532,7 +597,8 @@
    "shelf": "nt",
    "chapters": 22,
    "size": 66612,
-   "download": 20828
+   "download": 20828,
+   "sha256": "e437ffe1cdbe43cf"
   },
   {
    "code": "TOB",
@@ -540,7 +606,8 @@
    "shelf": "ap",
    "chapters": 14,
    "size": 38474,
-   "download": 13217
+   "download": 13217,
+   "sha256": "741d23cc627fbc36"
   },
   {
    "code": "JDT",
@@ -548,7 +615,8 @@
    "shelf": "ap",
    "chapters": 16,
    "size": 61834,
-   "download": 20549
+   "download": 20549,
+   "sha256": "e04517251a8803f5"
   },
   {
    "code": "ESG",
@@ -556,7 +624,8 @@
    "shelf": "ap",
    "chapters": 10,
    "size": 42084,
-   "download": 14855
+   "download": 14855,
+   "sha256": "76f5a8afceeb9173"
   },
   {
    "code": "WIS",
@@ -564,7 +633,8 @@
    "shelf": "ap",
    "chapters": 19,
    "size": 70454,
-   "download": 23716
+   "download": 23716,
+   "sha256": "cae50f28777fd3d0"
   },
   {
    "code": "SIR",
@@ -572,7 +642,8 @@
    "shelf": "ap",
    "chapters": 51,
    "size": 181559,
-   "download": 55868
+   "download": 55868,
+   "sha256": "342b916e2627df0f"
   },
   {
    "code": "BAR",
@@ -580,7 +651,8 @@
    "shelf": "ap",
    "chapters": 6,
    "size": 27927,
-   "download": 9935
+   "download": 9935,
+   "sha256": "22ae7fdef76cbd51"
   },
   {
    "code": "1MA",
@@ -588,7 +660,8 @@
    "shelf": "ap",
    "chapters": 16,
    "size": 132095,
-   "download": 41702
+   "download": 41702,
+   "sha256": "e223f16e4ae9bdda"
   },
   {
    "code": "2MA",
@@ -596,7 +669,8 @@
    "shelf": "ap",
    "chapters": 15,
    "size": 104428,
-   "download": 36711
+   "download": 36711,
+   "sha256": "e010c57bd43d139f"
   },
   {
    "code": "1ES",
@@ -604,7 +678,8 @@
    "shelf": "ap",
    "chapters": 9,
    "size": 69444,
-   "download": 22885
+   "download": 22885,
+   "sha256": "61b9fbf2ce2e8e58"
   },
   {
    "code": "MAN",
@@ -612,7 +687,8 @@
    "shelf": "ap",
    "chapters": 1,
    "size": 2653,
-   "download": 1231
+   "download": 1231,
+   "sha256": "a6abe1c84727158a"
   },
   {
    "code": "PS2",
@@ -620,7 +696,8 @@
    "shelf": "ap",
    "chapters": 1,
    "size": 924,
-   "download": 520
+   "download": 520,
+   "sha256": "803f44005c82255c"
   },
   {
    "code": "3MA",
@@ -628,7 +705,8 @@
    "shelf": "ap",
    "chapters": 7,
    "size": 39901,
-   "download": 15837
+   "download": 15837,
+   "sha256": "320ed809498f547b"
   },
   {
    "code": "2ES",
@@ -636,7 +714,8 @@
    "shelf": "ap",
    "chapters": 16,
    "size": 127776,
-   "download": 42165
+   "download": 42165,
+   "sha256": "0397f3fc4ce6d1f0"
   },
   {
    "code": "4MA",
@@ -644,7 +723,8 @@
    "shelf": "ap",
    "chapters": 18,
    "size": 61434,
-   "download": 22628
+   "download": 22628,
+   "sha256": "3050d3be4376c2cf"
   },
   {
    "code": "DAG",
@@ -652,7 +732,8 @@
    "shelf": "ap",
    "chapters": 14,
    "size": 86552,
-   "download": 26852
+   "download": 26852,
+   "sha256": "0983f68b585a9955"
   }
  ]
 }
