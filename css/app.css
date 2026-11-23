@@ -337,12 +337,48 @@ button.vn:hover, button.vn[aria-expanded="true"] { color: var(--on-accent); back
 .xref-list li:has(.xref-preview) { flex-basis: 100%; }
 .xref-offline { margin-top: 1rem; }
 
+/* Listen: the player stays at the bottom of the screen, above the pinned Back/Next bar. */
+.listen-actions { margin: 0 0 1rem; }
+.player {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; max-height: 60vh; overflow-y: auto;
+  padding: .55rem 1rem calc(.6rem + env(safe-area-inset-bottom));
+  background: var(--surface); border-top: 3px solid var(--accent); box-shadow: 0 -2px 8px rgba(0, 0, 0, .12);
+  font-family: var(--sans);
+}
+.player[hidden] { display: none; }
+.player > * { max-width: 44rem; margin-left: auto; margin-right: auto; }
+.player-top { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+.player-ref { margin: 0; font-weight: 700; }
+.player-msg { margin: .35rem auto 0; font-weight: 600; }
+.player-controls { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: .45rem; margin-top: .45rem; }
+.player-controls .btn { padding: .4rem .5rem; text-align: center; }
+.player-controls .btn:disabled { opacity: .45; cursor: default; }
+.player-more { margin-top: .4rem; }
+.player-more > summary { padding: .45rem 0; font-weight: 600; cursor: pointer; }
+.player-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem .75rem; margin-bottom: .6rem; }
+.player-grid .wide { grid-column: 1 / -1; }
+.player-grid label { display: block; font-size: .9rem; font-weight: 600; margin-bottom: .2rem; }
+.player select { width: 100%; min-height: 2.75rem; padding: .3rem .6rem; font: inherit; color: var(--text); background: var(--bg); border: 2px solid var(--muted); border-radius: var(--radius); }
+.player .btn[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
+.player .hint { margin: .4rem 0; }
+body.listening { padding-bottom: var(--player-h, 0px); }
+@media (max-width: 40rem) {
+  body.listening .actions.nav { bottom: var(--player-h, 0px); }
+}
+/* The verse being read: black on bright yellow with a black outline, in light and dark. */
+.text .reading-now { background: #ffe14d; color: #000; outline: 2px solid #000; outline-offset: 1px; box-shadow: none; border-radius: 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.text p.k-d.reading-now { padding: 0 .2rem; }
+@media (forced-colors: active) {
+  .text .reading-now { forced-color-adjust: none; background: Highlight; color: HighlightText; outline-color: CanvasText; }
+}
+.text .vt, .text p.k-d { scroll-margin-bottom: calc(var(--player-h, 0px) + 6rem); }
+
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 }
 
 @media print {
-  .skip, header.site, footer.site, .actions, .draft, .no-print, .status { display: none !important; }
+  .skip, header.site, footer.site, .actions, .draft, .no-print, .status, .player { display: none !important; }
   body { background: #fff; color: #000; font-size: 13pt; }
   main { padding: 0; max-width: none; }
   .prayer { border: 0; padding: 0; background: none; box-shadow: none; }

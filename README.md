@@ -43,7 +43,7 @@ Then open `http://localhost:8000`. Opening `index.html` directly from the folder
 python tools/verify.py
 ```
 
-This confirms that the bundled verses and every Bible study book (each chapter word for word, and every translators' note) match the World English Bible source exactly, that every reference resolves, that the offline file list is complete, that the core app (everything but the books) stays under its size budget, that the code fetches only the app's own files, and that there is no outside address or cookie code. The source is pinned: the WEB files the app was built from are kept at `sources/eng-web_usfm.zip`, and `sources/eng-web_usfm.json` records where and when they were downloaded and their SHA-256. The builds and checks use that copy, and stop if its checksum differs. Pass `--download` to compare with today's file from eBible.org instead, which shows whether the WEB has been revised since. Pass `--tsk-zip path/to/TSK.zip` to check the cross-references.
+This confirms that the bundled verses and every Bible study book (each chapter word for word, and every translators' note) match the World English Bible source exactly, that every reference resolves, that the offline file list is complete, that the core app (everything but the books) stays under its size budget, that the code fetches only the app's own files, that there is no outside address or cookie code, and that Listen has a spoken name for every book, offers only voices stored on the device and gives every utterance its voice. The source is pinned: the WEB files the app was built from are kept at `sources/eng-web_usfm.zip`, and `sources/eng-web_usfm.json` records where and when they were downloaded and their SHA-256. The builds and checks use that copy, and stop if its checksum differs. Pass `--download` to compare with today's file from eBible.org instead, which shows whether the WEB has been revised since. Pass `--tsk-zip path/to/TSK.zip` to check the cross-references.
 
 ## Scripture
 
@@ -93,6 +93,7 @@ The app is plain files, so any static host works. For GitHub Pages:
 - Pray by myself: text is kept for the visit in `sessionStorage` (erased when the tab closes), and in `localStorage` only if the person switches on "Keep my draft on this device". "Erase my words" removes both.
 - Share Jesus: text is held in memory only and never stored.
 - Bible study: the last chapter read and the translators' notes setting are in `localStorage`; books opened are in Cache Storage.
+- Listen: speech uses the browser's speechSynthesis with voices the device reports as stored on it (`localService`), never online, Google or Android network voices. Its settings and the place where listening stopped are in `localStorage`. The spoken book names and chapter announcements are in `lang/en.json` under `listen`.
 - Spell-check is switched off on the text boxes, because some browsers send text to an online service to check it.
 
 ## License

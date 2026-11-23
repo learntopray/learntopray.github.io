@@ -12,6 +12,8 @@
  * - Bible study: the last chapter read and the translators' notes setting (localStorage),
  *   and books opened or downloaded (the Cache Storage named after the Bible version).
  * - Cross-references: each book's file, once opened (the Cache Storage named after the TSK version).
+ * - Listen: its settings (speed, voice, announcements, keep screen on) and where listening
+ *   stopped (localStorage).
  * - My study: notes and bookmarks the person made (localStorage), and a note being written
  *   (sessionStorage, until it is saved or cancelled).
  */
@@ -816,7 +818,7 @@
         h('div', { class: 'actions' },
           placeBook && h('a', { class: 'btn primary', href: '#/bible/' + pCode + '/' + pCh },
             fill(B().continue, { ref: chapterTitle(placeBook, pCh) })),
-          h('a', { class: 'btn', href: '#/study' }, T().myStudy)),
+          h('a', { class: 'btn', href: '#/study' }, T().myStudy), listenContinue()),
         h('form', {
           class: 'bible-form',
           onsubmit: (e) => {
@@ -957,6 +959,7 @@
         nodes: [
           h('p', { class: 'shelf' }, B().shelves[info.shelf]),
           h('h1', null, chapterTitle(info, ch)),
+          listenSlot(info, ch),
           // Once closed, the line stays closed on this device. "Not on this device yet" always shows.
           book.saved && store.get(HIDE_SAVED_KEY) !== '1' && h('p', { class: 'saved-line dismissible' }, B().saved,
             h('button', {
@@ -1826,6 +1829,517 @@
       target.scrollIntoView({ block: 'center' });
     }
     if (view.after) view.after();
+    if (P.open) listenHighlight();
+  }
+
+  /* ---------- Listen: Bible study read aloud by a voice stored on the device ---------- */
+
+  // The player speaks only with voices the device says are stored on it, in English. Online
+  // voices (Google's, Microsoft's "Online" voices, Android "network" voices) are never offered,
+  // and every utterance is given its voice, so the browser's default voice is never used.
+  // One verse is one utterance (Chrome stops long ones), and the next verse is queued while
+  // one is read, so phones read without a gap. Pause cancels and Play starts that verse again,
+  // because pause() and resume() are unreliable on Android.
+  // Kept on this device (localStorage): the settings below and where listening stopped.
+  const LISTEN_KEY = 'teach-us-to-pray-listen';             // speed, voice, announcements, keep screen on
+  const LISTEN_PLACE_KEY = 'teach-us-to-pray-listen-place'; // where listening stopped, e.g. "JHN/3/16"
+  const LN = () => L.listen;
+  const isLocalVoice = (v) => v.localService === true && !/online|network/i.test(v.name + ' ' + v.voiceURI) && !/^google/i.test(v.name);
+  const englishVoice = (v) => /^en([-_]|$)/i.test(v.lang || '');
+  const canSpeak = () => !!(window.speechSynthesis && window.SpeechSynthesisUtterance);
+  // Reading runs on from book to book, and from Malachi into Matthew. It stops after
+  // Revelation and after the last book of the Apocrypha (decided at content review).
+  const runsOn = (from, to) => !!to && (from.shelf === to.shelf || (from.shelf === 'ot' && to.shelf === 'nt'));
+  const coarse = () => !!(window.matchMedia && matchMedia('(pointer: coarse)').matches);
+  let LS = { rate: 1, voice: null, announce: true, wake: false };
+  let VOICES = [];
+  let voicesWait = null;
+  let quietRoute = false; // the next route change follows the reading: do not move focus
+  const P = { open: false, playing: false, busy: false, code: null, ch: null, list: null, i: 0, queued: -1, token: 0, held: [], msg: '', sleepAt: 0, sleepTimer: null, lock: null, idleSince: 0 };
+  const PL = {}; // the player's elements
+
+  function localVoices() {
+    return canSpeak() ? speechSynthesis.getVoices().filter((v) => isLocalVoice(v) && englishVoice(v)) : [];
+  }
+  // Voices arrive late in some browsers. Wait up to two seconds for them.
+  function voicesReady() {
+    if (!canSpeak()) return Promise.resolve([]);
+    if (voicesWait) return voicesWait;
+    voicesWait = new Promise((resolve) => {
+      const done = () => { VOICES = localVoices(); resolve(VOICES); };
+      if (speechSynthesis.getVoices().length) { done(); return; }
+      const t = setTimeout(done, 2000);
+      speechSynthesis.addEventListener('voiceschanged', () => { clearTimeout(t); done(); }, { once: true });
+    });
+    return voicesWait;
+  }
+  function currentVoice() {
+    const lang = (navigator.language || 'en').toLowerCase().replace('_', '-');
+    return VOICES.find((v) => v.voiceURI === LS.voice)
+      || VOICES.find((v) => v.default) || VOICES.find((v) => v.lang.toLowerCase().replace('_', '-') === lang) || VOICES[0] || null;
+  }
+  function saveListen() { store.set(LISTEN_KEY, JSON.stringify(LS)); }
+
+  function listenPlace() {
+    const [code, ch, v] = (store.get(LISTEN_PLACE_KEY) || '').split('/');
+    const info = code && bookInfo(code);
+    const c = parseInt(ch, 10);
+    if (!info || !(c >= 1 && c <= info.chapters)) return null;
+    const verse = parseInt(v, 10) || 0;
+    return { code, ch: c, v: verse, ref: chapterTitle(info, c) + (verse > 0 ? ':' + verse : '') };
+  }
+  const itemRef = (item) => chapterTitle(bookInfo(P.code), P.ch) + (item && item.v > 0 ? ':' + item.v : '');
+
+  // A chapter as the player reads it: the announcement, the Psalm title, then each verse.
+  // Only the words are read: never verse numbers, translators' notes, cross-references or
+  // headings. Psalm titles are read, except Psalm 119's letter headings (decided at content
+  // review). Square brackets are not read; omitted verses (no words) are left out.
+  const LISTEN_CHAPTERS = new Map();
+  function listenItems(book, ch) {
+    const key = book.code + '/' + ch;
+    if (LISTEN_CHAPTERS.has(key)) return LISTEN_CHAPTERS.get(key);
+    const info = bookInfo(book.code);
+    const titles = (book.code === 'PSA' && ch !== 119) || book.code === 'PS2';
+    const items = [];
+    let cur = null;
+    let first = null;
+    let last = null;
+    for (const [kind, ...tokens] of book.chapters[ch - 1].b) {
+      if (kind === 'd') {
+        if (titles && cur === null) items.push({ v: 0, text: tokens.filter((t) => typeof t === 'string').join(' ') });
+        continue;
+      }
+      if (HEADING_KINDS.has(kind)) continue;
+      for (const t of tokens) {
+        if (typeof t === 'number' || (t && t.v)) {
+          const [a, b] = String(typeof t === 'number' ? t : t.v).split('-').map(Number);
+          if (first === null) first = a;
+          last = Math.max(last || 0, b || a);
+          cur = { v: a, text: '' };
+          items.push(cur);
+        } else if (typeof t === 'string' && cur) cur.text += t;
+      }
+      if (cur) cur.text += ' ';
+    }
+    const words = items.map((x) => ({ v: x.v, text: x.text.replace(/[[\]]/g, '').replace(/—{2,}/g, ' ').replace(/\s+/g, ' ').trim() }))
+      .filter((x) => /[a-z0-9]/i.test(x.text));
+    const sp = LN().spoken[book.code] || [info.name, info.name];
+    const N = LN().narrator;
+    const one = first === last;
+    const values = { book: sp[0], n: ch, first, last };
+    let line;
+    if (info.chapters === 1) line = fill(one ? N.bookOne : N.book, values);
+    else if (info.chapterName) line = fill(one ? N.psalmOne : N.psalm, values);
+    else line = fill(one ? N.chapterOne : N.chapter, values);
+    const out = [{ v: null, narr: true, text: (ch === 1 ? fill(N.opening, { name: sp[1] }) + ' ' : '') + line }, ...words];
+    LISTEN_CHAPTERS.set(key, out);
+    return out;
+  }
+
+  // The chapter on screen, as "CODE/ch", or null.
+  function shownChapter() {
+    const [name, code, ch] = location.hash.replace(/^#\/?/, '').split('/');
+    const info = name === 'bible' && code && bookInfo(code);
+    if (!info) return null;
+    const c = ch ? parseInt(ch, 10) : (info.chapters === 1 ? 1 : null);
+    return c ? code + '/' + c : null;
+  }
+
+  function announce(text) {
+    if (!PL.live) return;
+    PL.live.textContent = '';
+    setTimeout(() => { PL.live.textContent = text; }, 60);
+  }
+
+  // The verse being read, in a high-contrast style, kept in view.
+  function listenHighlight() {
+    document.querySelectorAll('.reading-now').forEach((e) => e.classList.remove('reading-now'));
+    if (!P.open || !P.list || shownChapter() !== P.code + '/' + P.ch) return;
+    const item = P.list[P.i];
+    if (!item || item.narr) return;
+    const els = item.v === 0 ? main.querySelectorAll('.text p.k-d') : main.querySelectorAll('.text .vt[data-v="' + item.v + '"]');
+    els.forEach((e) => e.classList.add('reading-now'));
+    const first = els[0];
+    if (!first) return;
+    const r = first.getBoundingClientRect();
+    const bottom = window.innerHeight - (PL.bar ? PL.bar.offsetHeight : 0);
+    if (r.top < 0 || r.bottom > bottom) first.scrollIntoView({ block: 'center' });
+  }
+
+  function paint() {
+    if (!PL.bar) return;
+    PL.bar.hidden = !P.open;
+    document.body.classList.toggle('listening', P.open);
+    PL.play.textContent = P.playing ? LN().pause : LN().play;
+    const place = listenPlace();
+    const item = P.list && P.list[P.i];
+    PL.ref.textContent = P.playing && P.list ? fill(LN().reading, { ref: itemRef(item) })
+      : place ? fill(LN().continueFrom, { ref: place.ref }) : '';
+    PL.msg.textContent = P.msg;
+    PL.msg.hidden = !P.msg;
+    PL.prev.disabled = !P.list;
+    PL.next.disabled = !P.list;
+    if (PL.wake) PL.wake.setAttribute('aria-pressed', LS.wake ? 'true' : 'false');
+    document.documentElement.style.setProperty('--player-h', P.open ? PL.bar.offsetHeight + 'px' : '0px');
+    listenHighlight();
+  }
+
+  // Keep the screen on while reading, only if the person turned it on. A wake lock ends
+  // when the app leaves the screen; it is asked for again when the person comes back.
+  async function holdScreen() {
+    if (!LS.wake || !P.playing || !navigator.wakeLock || document.visibilityState !== 'visible') return;
+    if (P.lock && !P.lock.released) return;
+    try { P.lock = await navigator.wakeLock.request('screen'); } catch (e) { P.lock = null; }
+  }
+  function releaseScreen() {
+    if (P.lock) { try { P.lock.release(); } catch (e) { /* ignore */ } }
+    P.lock = null;
+  }
+
+  function utter(k, tok) {
+    const item = P.list[k];
+    const voice = currentVoice();
+    if (!item || !voice) return;
+    const u = new SpeechSynthesisUtterance(item.text);
+    u.voice = voice;
+    u.lang = voice.lang;
+    u.rate = LS.rate;
+    u.onstart = () => {
+      if (tok !== P.token) return;
+      P.i = k;
+      P.idleSince = 0;
+      if (item.narr) {
+        const next = P.list.find((x) => !x.narr);
+        if (next) store.set(LISTEN_PLACE_KEY, P.code + '/' + P.ch + '/' + next.v);
+      } else store.set(LISTEN_PLACE_KEY, P.code + '/' + P.ch + '/' + item.v);
+      // Fetch the next book while the end of this one is read.
+      const info = bookInfo(P.code);
+      if (P.ch === info.chapters && k >= P.list.length - 3) {
+        const nb = neighbour(info, P.ch, 1);
+        if (nb && runsOn(info, nb.info)) getBook(nb.info.code).catch(() => {});
+      }
+      paint();
+    };
+    u.onend = () => { if (tok === P.token) itemEnded(k); };
+    u.onerror = (e) => {
+      if (tok !== P.token || e.error === 'interrupted' || e.error === 'canceled') return;
+      interrupted();
+    };
+    P.held.push(u); // held so the browser does not drop it before it ends
+    P.queued = k;
+    speechSynthesis.speak(u);
+  }
+
+  function speakFrom(i) {
+    speechSynthesis.cancel();
+    P.token += 1;
+    P.held = [];
+    P.i = i;
+    P.msg = '';
+    P.playing = true;
+    P.idleSince = 0;
+    const tok = P.token;
+    utter(i, tok);
+    if (i + 1 < P.list.length) utter(i + 1, tok);
+    holdScreen();
+    paint();
+  }
+
+  function itemEnded(k) {
+    if (P.sleepAt && Date.now() >= P.sleepAt) { sleepEnded(); return; }
+    if (k >= P.list.length - 1) { nextChapter(); return; }
+    P.i = k + 1;
+    if (P.queued < k + 2 && k + 2 < P.list.length) utter(k + 2, P.token);
+  }
+
+  // Stopped by the device (a call, the screen locking, another app): the place is kept,
+  // and the player shows "Continue from".
+  function interrupted() {
+    P.token += 1;
+    P.playing = false;
+    P.busy = false;
+    try { speechSynthesis.cancel(); } catch (e) { /* ignore */ }
+    releaseScreen();
+    paint();
+    const place = listenPlace();
+    if (place) announce(fill(LN().sr.paused, { ref: place.ref }));
+  }
+  function stopWith(message) {
+    interrupted();
+    P.msg = message;
+    paint();
+    announce(message);
+  }
+
+  function setChapter(book, ch) {
+    P.code = book.code;
+    P.ch = ch;
+    P.list = listenItems(book, ch).filter((x) => !x.narr || LS.announce);
+  }
+
+  // At the end of a chapter: the next one, across books, but not past Revelation or the Apocrypha.
+  async function nextChapter() {
+    const info = bookInfo(P.code);
+    const nb = neighbour(info, P.ch, 1);
+    if (!nb || !runsOn(info, nb.info)) { shelfEnded(info.shelf); return; }
+    const following = shownChapter() === P.code + '/' + P.ch;
+    const tok = P.token;
+    P.busy = true;
+    let book;
+    try { book = await getBook(nb.info.code); } catch (e) {
+      P.busy = false;
+      store.set(LISTEN_PLACE_KEY, nb.info.code + '/' + nb.ch + '/1');
+      stopWith(fill(LN().notHere, { book: nb.info.name }));
+      return;
+    }
+    P.busy = false;
+    if (tok !== P.token || !P.playing) return;
+    setChapter(book, nb.ch);
+    speakFrom(0);
+    if (following) { quietRoute = true; location.hash = '#/bible/' + nb.info.code + '/' + nb.ch; }
+    announce(fill(LN().sr.chapter, { chapter: chapterTitle(nb.info, nb.ch) }));
+  }
+
+  function shelfEnded(shelf) {
+    const message = fill(LN().shelfEnd, { shelf: B().shelves[shelf] });
+    const voice = currentVoice();
+    P.token += 1;
+    const tok = P.token;
+    store.set(LISTEN_PLACE_KEY, null);
+    const finish = () => { if (tok === P.token) stopWith(message); };
+    if (!voice) { finish(); return; }
+    const u = new SpeechSynthesisUtterance(fill(LN().shelfEnd, { shelf: LN().shelfSpoken[shelf] }));
+    u.voice = voice;
+    u.lang = voice.lang;
+    u.rate = LS.rate;
+    u.onend = finish;
+    u.onerror = finish;
+    P.held = [u];
+    speechSynthesis.speak(u);
+  }
+
+  function sleepEnded() {
+    P.sleepAt = 0;
+    clearTimeout(P.sleepTimer);
+    if (PL.sleep) PL.sleep.value = '0';
+    const place = listenPlace();
+    stopWith(fill(LN().sleepDone, { ref: place ? place.ref : '' }));
+  }
+  function setSleep(minutes) {
+    clearTimeout(P.sleepTimer);
+    P.sleepAt = minutes ? Date.now() + minutes * 60000 : 0;
+    if (minutes) P.sleepTimer = setTimeout(() => { if (P.sleepAt && Date.now() >= P.sleepAt - 1000) { if (P.playing) sleepEnded(); else P.sleepAt = 0; } }, minutes * 60000);
+    announce(minutes ? fill(LN().sr.sleepOn, { n: minutes }) : LN().sr.sleepOff);
+  }
+
+  // iPhone Safari speaks only when a tap starts it: start with a silent utterance in the tap itself.
+  function unlockSpeech() {
+    const voice = currentVoice();
+    if (!voice) return;
+    const u = new SpeechSynthesisUtterance('');
+    u.voice = voice;
+    u.volume = 0;
+    speechSynthesis.speak(u);
+  }
+
+  // Start reading a chapter, from its beginning or from verse v.
+  async function startListening(code, ch, v) {
+    unlockSpeech();
+    P.open = true;
+    P.msg = '';
+    paint();
+    let book;
+    try { book = await getBook(code); } catch (e) { stopWith(fill(LN().notHere, { book: bookInfo(code).name })); return; }
+    setChapter(book, ch);
+    let i = 0;
+    if (v != null) {
+      const at = P.list.findIndex((x) => x.v === v);
+      i = at > 0 ? at : 0;
+    }
+    speakFrom(i);
+    announce(fill(LN().sr.playing, { ref: itemRef(P.list[i]) }));
+  }
+
+  function togglePlay() {
+    if (P.playing) {
+      interrupted();
+      return;
+    }
+    if (P.list) {
+      unlockSpeech();
+      speakFrom(Math.min(P.i, P.list.length - 1));
+      announce(fill(LN().sr.playing, { ref: itemRef(P.list[P.i]) }));
+      return;
+    }
+    const place = listenPlace();
+    if (place) startListening(place.code, place.ch, place.v);
+  }
+
+  // Previous or next verse, into the chapter before or after (where reading runs on).
+  async function stepVerse(d) {
+    if (!P.list || P.busy) return;
+    let k = P.i + d;
+    while (k >= 0 && k < P.list.length && P.list[k].narr) k += d;
+    if (k >= 0 && k < P.list.length) {
+      P.i = k;
+      store.set(LISTEN_PLACE_KEY, P.code + '/' + P.ch + '/' + P.list[k].v);
+      if (P.playing) speakFrom(k); else paint();
+      return;
+    }
+    const info = bookInfo(P.code);
+    const nb = neighbour(info, P.ch, d);
+    if (!nb || !(d > 0 ? runsOn(info, nb.info) : runsOn(nb.info, info))) return;
+    const following = shownChapter() === P.code + '/' + P.ch;
+    const playing = P.playing;
+    if (playing) interrupted();
+    P.busy = true;
+    let book;
+    try { book = await getBook(nb.info.code); } catch (e) { P.busy = false; stopWith(fill(LN().notHere, { book: nb.info.name })); return; }
+    P.busy = false;
+    setChapter(book, nb.ch);
+    let i = d > 0 ? 0 : P.list.length - 1;
+    if (d > 0 && !playing) i = P.list.findIndex((x) => !x.narr);
+    P.i = i;
+    if (!P.list[i].narr) store.set(LISTEN_PLACE_KEY, P.code + '/' + P.ch + '/' + P.list[i].v);
+    if (following) { quietRoute = true; location.hash = '#/bible/' + nb.info.code + '/' + nb.ch; }
+    if (playing) speakFrom(i); else paint();
+  }
+
+  function closePlayer() {
+    interrupted();
+    P.open = false;
+    P.msg = '';
+    paint();
+    const target = main.querySelector('.listen-slot button') || main;
+    target.focus();
+  }
+
+  function buildPlayer() {
+    const label = (id, text) => h('label', { for: id }, text);
+    PL.live = h('p', { class: 'visually-hidden', role: 'status', 'aria-live': 'polite' });
+    PL.ref = h('p', { class: 'player-ref' });
+    PL.msg = h('p', { class: 'player-msg', hidden: true });
+    PL.play = h('button', { type: 'button', class: 'btn primary player-play', onclick: togglePlay }, LN().play);
+    PL.prev = h('button', { type: 'button', class: 'btn', onclick: () => stepVerse(-1) }, LN().prev);
+    PL.next = h('button', { type: 'button', class: 'btn', onclick: () => stepVerse(1) }, LN().next);
+    PL.speed = h('select', {
+      id: 'listen-speed',
+      onchange: (e) => { LS.rate = parseFloat(e.target.value); saveListen(); if (P.playing) speakFrom(P.i); },
+    }, LN().speeds.map((s) => h('option', { value: String(s) }, fill(LN().speedLabel, { n: String(s) }))));
+    PL.speed.value = String(LS.rate);
+    PL.voice = h('select', {
+      id: 'listen-voice',
+      onchange: (e) => { LS.voice = e.target.value; saveListen(); if (P.playing) speakFrom(P.i); },
+    });
+    PL.sleep = h('select', { id: 'listen-sleep', onchange: (e) => setSleep(parseInt(e.target.value, 10)) },
+      h('option', { value: '0' }, LN().sleepOff),
+      LN().sleepMinutes.map((n) => h('option', { value: String(n) }, fill(LN().sleepLabel, { n }))));
+    const announceBox = h('input', {
+      type: 'checkbox', id: 'listen-announce', checked: LS.announce,
+      onchange: (e) => { LS.announce = e.target.checked; saveListen(); },
+    });
+    let wakePart = null;
+    if (coarse()) {
+      if (navigator.wakeLock) {
+        PL.wake = h('button', {
+          type: 'button', class: 'btn', 'aria-pressed': 'false', 'aria-describedby': 'listen-wake-hint',
+          onclick: () => { LS.wake = !LS.wake; saveListen(); if (LS.wake) holdScreen(); else releaseScreen(); paint(); },
+        }, LN().wake);
+        wakePart = [PL.wake, h('p', { class: 'hint', id: 'listen-wake-hint' }, LN().wakeHint)];
+      } else wakePart = h('p', { class: 'hint' }, LN().wakeNone);
+    }
+    PL.bar = h('section', { class: 'player', 'aria-label': LN().player, hidden: true },
+      h('div', { class: 'player-top' }, PL.ref,
+        h('button', { type: 'button', class: 'btn small player-close', onclick: closePlayer }, LN().close)),
+      PL.msg,
+      h('div', { class: 'player-controls' }, PL.prev, PL.play, PL.next),
+      h('details', { class: 'player-more' },
+        h('summary', null, LN().settings),
+        h('div', { class: 'player-grid' },
+          h('div', null, label('listen-speed', LN().speed), PL.speed),
+          h('div', null, label('listen-sleep', LN().sleep), PL.sleep),
+          h('div', { class: 'wide' }, label('listen-voice', LN().voice), PL.voice)),
+        h('label', { class: 'check', for: 'listen-announce' }, announceBox, h('span', null, LN().announce)),
+        wakePart,
+        h('p', { class: 'hint' }, coarse() ? LN().phoneLine : LN().keys)),
+      PL.live);
+    document.body.insertBefore(PL.bar, document.querySelector('footer.site'));
+    if (window.ResizeObserver) new ResizeObserver(() => { if (P.open) document.documentElement.style.setProperty('--player-h', PL.bar.offsetHeight + 'px'); }).observe(PL.bar);
+  }
+
+  function fillVoices() {
+    const current = currentVoice();
+    PL.voice.replaceChildren(...VOICES.map((v) => h('option', { value: v.voiceURI }, v.name)));
+    if (current) PL.voice.value = current.voiceURI;
+  }
+
+  // The Listen button on a chapter. With no voice stored on the device, a plain message instead.
+  function listenSlot(info, ch) {
+    const box = h('div', { class: 'listen-slot' });
+    if (!canSpeak()) { box.append(h('p', { class: 'hint' }, LN().noVoice)); return box; }
+    voicesReady().then((voices) => {
+      if (!voices.length) { box.replaceChildren(h('p', { class: 'hint' }, LN().noVoice)); return; }
+      const place = listenPlace();
+      const here = place && place.code === info.code && place.ch === ch && place.v > 0;
+      box.replaceChildren(h('div', { class: 'actions listen-actions' },
+        h('button', { type: 'button', class: 'btn', onclick: () => startListening(info.code, ch, null) }, LN().listen),
+        here && h('button', { type: 'button', class: 'btn', onclick: () => startListening(place.code, place.ch, place.v) },
+          fill(LN().continueFrom, { ref: place.ref }))));
+    });
+    return box;
+  }
+  // "Continue from" on the Bible study home screen, after listening stopped.
+  function listenContinue() {
+    const box = h('span', { class: 'listen-continue' });
+    const place = listenPlace();
+    if (!place || !canSpeak()) return box;
+    voicesReady().then((voices) => {
+      if (!voices.length) return;
+      box.append(h('button', {
+        type: 'button', class: 'btn',
+        onclick: () => {
+          unlockSpeech();
+          quietRoute = true;
+          location.hash = '#/bible/' + place.code + '/' + place.ch;
+          startListening(place.code, place.ch, place.v);
+        },
+      }, fill(LN().continueFrom, { ref: place.ref })));
+    });
+    return box;
+  }
+
+  function initListen() {
+    try { LS = Object.assign(LS, JSON.parse(store.get(LISTEN_KEY)) || {}); } catch (e) { /* defaults */ }
+    if (!canSpeak()) return;
+    buildPlayer();
+    voicesReady().then(fillVoices);
+    speechSynthesis.addEventListener('voiceschanged', () => { VOICES = localVoices(); fillVoices(); });
+    document.addEventListener('keydown', (e) => {
+      if (!P.open || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      const t = e.target;
+      const tag = t && t.tagName;
+      if (t && (t.isContentEditable || tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT')) return;
+      if (e.key === ' ') {
+        if (tag === 'BUTTON' || tag === 'A' || tag === 'SUMMARY') return; // they use Space themselves
+        e.preventDefault();
+        togglePlay();
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        stepVerse(e.key === 'ArrowLeft' ? -1 : 1);
+      }
+    });
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState !== 'visible' || !P.playing) return;
+      if (speechSynthesis.paused) { interrupted(); return; } // iPhone pauses speech when the screen locks
+      holdScreen();
+    });
+    // While the app is on screen: reading that stopped by itself shows "Continue from".
+    setInterval(() => {
+      if (!P.playing || P.busy || document.visibilityState !== 'visible') { P.idleSince = 0; return; }
+      if (speechSynthesis.speaking || speechSynthesis.pending) { P.idleSince = 0; return; }
+      if (!P.idleSince) { P.idleSince = Date.now(); return; }
+      if (Date.now() - P.idleSince > 4000) interrupted();
+    }, 2000);
   }
 
   async function start() {
@@ -1862,8 +2376,10 @@
       needHelp: '#/share/borrow', perPhrase: true, reviewText: L.share.review, prayerText: L.share.prayer,
     });
     loadDraft();
+    initListen();
     // The skip link's target is #main, which is not a screen: never route to it.
-    window.addEventListener('hashchange', () => { if (location.hash !== '#main') render(true); });
+    // A route change made by Listen following the reading leaves the focus where it is.
+    window.addEventListener('hashchange', () => { if (location.hash === '#main') return; const quiet = quietRoute; quietRoute = false; render(!quiet); });
     render(false);
 
     if ('serviceWorker' in navigator) {

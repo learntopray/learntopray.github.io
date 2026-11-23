@@ -1,6 +1,16 @@
-# Listen: wording for approval
+# Listen: wording (approved 2026-11-22)
 
-Nothing here is built yet. Every line below is new wording of ours; Scripture is never re-worded. Mark any change and I will build exactly what you approve.
+Approved with these changes, now built into `lang/en.json` (`listen`) and the About page:
+
+1. Opening names of numbered books in the Old Testament and Apocrypha take the older form: "The First Book of Samuel", "The Second Book of Kings", "The Fourth Book of Maccabees", "The First Book of Esdras" and so on.
+2. New Testament opening names take the conventional forms: "The Gospel according to Matthew", "The Acts of the Apostles", "The Letter to the Romans", "The First Letter to the Corinthians", "The Letter to the Hebrews", "The Letter of James", "The First Letter of Peter", "The Third Letter of John", "The Letter of Jude", "The Book of Revelation" and so on.
+3. The privacy paragraph adds: "The app only offers voices your device says are stored on it. On some Android phones the speech engine belongs to the phone, and the app cannot see inside it."
+4. The How it works paragraph adds: "It says the book and chapter before each chapter unless you turn that off."
+5. Psalm 119's letter headings are not read. Psalm titles are.
+
+Added while building, for review: the word **Settings** on the fold-out that holds Speed, Voice, Sleep timer, the announcements setting and Keep screen on. When the end of the Apocrypha is spoken, the shelf name is said without its brackets ("This is the end of the Apocrypha."); on screen it shows the full shelf name.
+
+The tables below are the first draft; the opening names in `lang/en.json` are the approved ones.
 
 ## 1. Spoken book names (81)
 

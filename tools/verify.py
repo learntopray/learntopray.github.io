@@ -8,7 +8,7 @@ with today's file from eBible.org instead, to see whether the WEB has been revis
 2. Every verse reference in every language file exists in its Scripture file.
 3. The service worker lists exactly the files that are shipped, except the books of
    the Bible, which the app keeps on the device when they are opened.
-4. The core app (everything except the books of the Bible) stays small: less than 200 KB.
+4. The core app (everything except the books of the Bible) stays small: less than 260 KB.
    This is a check on ourselves, not a promise made in the app.
 5. No core file contains the doxology, and no code file contains cookie code or an
    outside address. The page allows requests to its own site only (Content-Security-Policy),
@@ -28,6 +28,11 @@ with today's file from eBible.org instead, to see whether the WEB has been revis
 11. The cross-reference files equal a fresh extraction from the CrossWire TSK module
     (tools/build_tsk.py, given with --tsk-zip), the module's configuration file is kept in
     sources/, and the service worker's TSK cache is named after the same version.
+13. Listen has a spoken name and an opening name for every book, with no brackets.
+14. Listen offers only voices the device says are stored on it, never online voices, and
+    gives every utterance its voice, so the browser's default voice is never used.
+15. The About page lists Listen among the words that are ours and the things kept on the device,
+    and says that online voices are never used.
 """
 import json
 import pathlib
@@ -38,7 +43,7 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SHIPPED_DIRS = ["css", "js", "lang", "scripture", "icons", "bible", "tsk"]
 SHIPPED_FILES = ["index.html", "manifest.webmanifest", "sw.js"]
-BUDGET = 200 * 1024  # raised from 100 KB (Phase 1, Bible study) and 160 KB (Phase 2, My study)
+BUDGET = 260 * 1024  # raised from 100 KB (Phase 1, Bible study), 160 KB (Phase 2, My study) and 200 KB (Listen)
 problems = []
 SHOW_QUOTES = "--quotes" in sys.argv
 ARGS = [a for a in sys.argv[1:] if a != "--quotes"]
@@ -243,6 +248,37 @@ if "DistributionLicense=Public Domain" not in (ROOT / "sources" / "crosswire-tsk
 app_files = re.search(r"const APP_FILES = \[(.*?)\];", (ROOT / "js" / "app.js").read_text(encoding="utf-8"), re.S)
 if not app_files or set(re.findall(r"'([^']+)'", app_files.group(1))) != listed | {"./"}:
     problems.append("APP_FILES in js/app.js must equal FILES in sw.js")
+
+# 13
+L_en = json.loads((ROOT / "lang" / "en.json").read_text(encoding="utf-8"))
+spoken = L_en["listen"]["spoken"]
+codes = [b["code"] for b in json.loads((ROOT / "bible" / "index.json").read_text(encoding="utf-8"))["books"]]
+for code in codes:
+    names = spoken.get(code)
+    if not (isinstance(names, list) and len(names) == 2 and all(isinstance(n, str) and n.strip() for n in names)):
+        problems.append(f"Listen: {code} needs a spoken name and an opening name")
+    elif any(c in n for n in names for c in "()[]"):
+        problems.append(f"Listen: the spoken names for {code} must not contain brackets")
+if set(spoken) - set(codes):
+    problems.append("Listen: spoken names for books that do not exist")
+
+# 14
+app_js = (ROOT / "js" / "app.js").read_text(encoding="utf-8")
+if "v.localService === true && !/online|network/i.test(v.name + ' ' + v.voiceURI) && !/^google/i.test(v.name)" not in app_js:
+    problems.append("Listen: isLocalVoice must accept only voices stored on the device, never online voices")
+if app_js.count("speechSynthesis.getVoices().filter((v) => isLocalVoice(v)") != 1 or app_js.count(".getVoices()") != 2:
+    problems.append("Listen: voices must be taken only through localVoices (isLocalVoice)")
+made = app_js.count("new SpeechSynthesisUtterance(")
+if made == 0 or made != len(re.findall(r"new SpeechSynthesisUtterance\([^;]*\);\n\s*u\.voice = voice;", app_js)):
+    problems.append("Listen: every utterance must be given its voice (u.voice = voice) on the next line")
+
+# 15
+about = L_en["about"]
+if "chapter announcements in Listen" not in " ".join(about["sources"]):
+    problems.append("About: the words that are ours must include Listen")
+privacy = " ".join(about["privacy"])
+if "where listening stopped" not in privacy or "Keep screen on setting for Listen" not in privacy or "never uses online voices" not in privacy:
+    problems.append("About: the privacy section must list what Listen keeps and say it never uses online voices")
 
 print("FAILED:\n- " + "\n- ".join(problems) if problems else "ALL CHECKS PASSED")
 sys.exit(1 if problems else 0)

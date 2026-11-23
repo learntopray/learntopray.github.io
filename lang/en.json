@@ -684,7 +684,8 @@
       "Your words leave the app only if you choose to send them yourself. \"Copy\" puts them on your clipboard. \"Share\" hands them to the app you pick on your own device. \"Save as a file\" puts a text file in your downloads. \"Print\" sends them to your printer.",
       "Your prayer words are not kept after you close the app unless you turn on \"Keep my draft on this device\". If you do, your words are stored only in this browser, and \"Erase my words\" removes them. Erasing does not remove files you saved or copies you shared.",
       "While you pray by yourself, your words are also kept for this visit only, in this browser tab, so that they are not lost if you open a chapter of the Bible or your phone closes the tab in the background. They are erased when you close the tab. Nothing is kept beyond the visit unless you turn on \"Keep my draft on this device\". Words typed in \"Share Jesus\" are never stored.",
-      "Bible study remembers the last chapter you read and a few display choices, such as hiding the translators' notes, on this device only, so you can carry on where you left off. Books you open are kept on this device so you can read them offline. Neither is ever sent anywhere.",
+      "Bible study remembers the last chapter you read, where listening stopped, and a few choices, such as hiding the translators' notes and the speed, voice, chapter announcements and Keep screen on setting for Listen, on this device only, so you can carry on where you left off. Books you open are kept on this device so you can read them offline. Neither is ever sent anywhere.",
+      "Listen uses only voices stored on your device, so your device speaks the words itself and nothing is sent anywhere. It never uses online voices, such as Google's or Microsoft's online voices. The app only offers voices your device says are stored on it. On some Android phones the speech engine belongs to the phone, and the app cannot see inside it. If your device has no stored voice, the app says so and does not show the player.",
       "My study keeps your notes and bookmarks in this browser on this device only, and only because you wrote them. They are never sent anywhere. A backup file contains your notes as readable text, so take care where you send it.",
       "While you write a note, it is kept for this visit only, in this browser tab, so that it is not lost if your phone closes the tab in the background. It is erased when you save or cancel the note, or close the tab."
     ],
@@ -694,7 +695,7 @@
       "Scripture quotations are from the World English Bible (WEB), which is in the public domain. The text was taken from eBible.org, from its files dated 21 November 2026. \"World English Bible\" is a trademark of eBible.org.",
       "Where a reference ends in \"a\" or \"b\", only that part of the verse is shown. The words shown are unchanged.",
       "Where an excerpt begins or ends partway through a speech, the quotation mark that opens or closes that speech elsewhere is not shown at the start or end of the excerpt.",
-      "The app adds no teaching of its own. The only words that are ours are the step names, headings and buttons, the questions, the short \"Think about\" prompts under them, the start screen, the instruction on the read-through screen, the reminders to pray out loud, and this page. In \"Share Jesus\", the leader notes, the questions and ideas, the instructions on the read-through and phrase screens, and the next steps are ours too. In Bible study, the headings, buttons and the short lines under the Apocrypha shelf are ours, and so are the labels and buttons in My study and the labels around the cross-references.",
+      "The app adds no teaching of its own. The only words that are ours are the step names, headings and buttons, the questions, the short \"Think about\" prompts under them, the start screen, the instruction on the read-through screen, the reminders to pray out loud, and this page. In \"Share Jesus\", the leader notes, the questions and ideas, the instructions on the read-through and phrase screens, and the next steps are ours too. In Bible study, the headings, buttons and the short lines under the Apocrypha shelf are ours, and so are the labels and buttons in My study and the labels around the cross-references, and the labels, messages, spoken book names and chapter announcements in Listen.",
       "The text, book names and translators' notes in Bible study come from the same eBible.org files, by code, unchanged. Whole chapters are shown exactly as published. The translators' notes are marked as theirs and are not Scripture. The WEB's preface and glossary are not included.",
       "Cross-references are from the Treasury of Scripture Knowledge, in the CrossWire Bible Society's edition (version 1.4) dated about 1880, compiled from the work of Canne, Browne, Blayney, Scott and others. It is in the public domain. Its headings are in the words of the King James Version. A reference that does not match a verse in the WEB is shown as plain text. One exception: the TSK's references to Romans 16:25-27 open Romans 14:24-26, where the WEB prints those verses, as the WEB's own note says."
     ],
@@ -720,7 +721,8 @@
       "At the end you see your prayer in your own words. The app never writes a prayer for you, and it never changes your words.",
       "\"Share Jesus\" helps a believer guide someone who is ready to turn to Jesus. It shows Scripture, asks a few questions, and ends with a prayer in that person's own words, said aloud phrase by phrase. The app never writes the prayer, never says that saying it saves anyone, and never keeps their words on the device.",
       "Bible study has the whole World English Bible, with the Apocrypha on its own shelf. You can go to any chapter, search, and read offline. Each chapter has its own link, so you can open the same place on another device.",
-      "My study lets you bookmark verses in six colours you can name, write notes that link to passages and to each other, and save a backup file. Under any verse in the 66 books, you can open cross-references from the Treasury of Scripture Knowledge."
+      "My study lets you bookmark verses in six colours you can name, write notes that link to passages and to each other, and save a backup file. Under any verse in the 66 books, you can open cross-references from the Treasury of Scripture Knowledge.",
+      "Listen reads any chapter aloud with a voice stored on your device, verse after verse, chapter after chapter and book after book, until you stop it. It reads the words of Scripture and the Psalm titles. It does not read verse numbers, translators' notes, cross-references or other headings. It says the book and chapter before each chapter unless you turn that off."
     ]
   },
   "bible": {
@@ -862,5 +864,392 @@
     "eraseAll": "Erase all my notes and bookmarks",
     "eraseAllConfirm": "Erase every note and bookmark on this device? This cannot be undone unless you have a backup file.",
     "fileName": "teach-us-to-pray-backup"
+  },
+  "listen": {
+    "listen": "Listen",
+    "player": "Listen",
+    "play": "Play",
+    "pause": "Pause",
+    "prev": "Previous verse",
+    "next": "Next verse",
+    "speed": "Speed",
+    "speeds": [
+      0.75,
+      1,
+      1.25,
+      1.5,
+      2
+    ],
+    "speedLabel": "{n}×",
+    "voice": "Voice",
+    "sleep": "Sleep timer",
+    "sleepOff": "Off",
+    "sleepMinutes": [
+      15,
+      30,
+      60
+    ],
+    "sleepLabel": "{n} minutes",
+    "settings": "Settings",
+    "announce": "Say the book and chapter before each chapter",
+    "wake": "Keep screen on",
+    "wakeHint": "This works only while the app is on screen. It turns on again when you come back to the app.",
+    "wakeNone": "This phone does not let the app keep the screen on.",
+    "close": "Close",
+    "reading": "Reading {ref}",
+    "continueFrom": "Continue from {ref}",
+    "phoneLine": "On most phones, reading stops when the screen locks or you switch apps. Your place is kept.",
+    "keys": "Keys: Space plays or pauses. The left and right arrows go to the previous or next verse.",
+    "noVoice": "Listening needs a voice stored on this device, and none was found. This app never uses online voices. You may be able to add a voice in your device's speech or accessibility settings.",
+    "notHere": "Reading stopped: {book} is not on this device yet. Connect to the internet once to open it.",
+    "sleepDone": "The sleep timer ended. Your place is kept: {ref}.",
+    "shelfEnd": "This is the end of the {shelf}.",
+    "shelfSpoken": {
+      "ot": "Old Testament",
+      "nt": "New Testament",
+      "ap": "Apocrypha"
+    },
+    "sr": {
+      "playing": "Playing {ref}.",
+      "paused": "Paused at {ref}.",
+      "chapter": "Now reading {chapter}.",
+      "sleepOn": "Sleep timer set for {n} minutes.",
+      "sleepOff": "Sleep timer off."
+    },
+    "narrator": {
+      "chapter": "{book}, chapter {n}, verses {first} through {last}.",
+      "chapterOne": "{book}, chapter {n}, verse {first}.",
+      "psalm": "{book} {n}, verses {first} through {last}.",
+      "psalmOne": "{book} {n}, verse {first}.",
+      "book": "{book}, verses {first} through {last}.",
+      "bookOne": "{book}, verse {first}.",
+      "opening": "{name}."
+    },
+    "spoken": {
+      "GEN": [
+        "Genesis",
+        "The Book of Genesis"
+      ],
+      "EXO": [
+        "Exodus",
+        "The Book of Exodus"
+      ],
+      "LEV": [
+        "Leviticus",
+        "The Book of Leviticus"
+      ],
+      "NUM": [
+        "Numbers",
+        "The Book of Numbers"
+      ],
+      "DEU": [
+        "Deuteronomy",
+        "The Book of Deuteronomy"
+      ],
+      "JOS": [
+        "Joshua",
+        "The Book of Joshua"
+      ],
+      "JDG": [
+        "Judges",
+        "The Book of Judges"
+      ],
+      "RUT": [
+        "Ruth",
+        "The Book of Ruth"
+      ],
+      "1SA": [
+        "First Samuel",
+        "The First Book of Samuel"
+      ],
+      "2SA": [
+        "Second Samuel",
+        "The Second Book of Samuel"
+      ],
+      "1KI": [
+        "First Kings",
+        "The First Book of Kings"
+      ],
+      "2KI": [
+        "Second Kings",
+        "The Second Book of Kings"
+      ],
+      "1CH": [
+        "First Chronicles",
+        "The First Book of Chronicles"
+      ],
+      "2CH": [
+        "Second Chronicles",
+        "The Second Book of Chronicles"
+      ],
+      "EZR": [
+        "Ezra",
+        "The Book of Ezra"
+      ],
+      "NEH": [
+        "Nehemiah",
+        "The Book of Nehemiah"
+      ],
+      "EST": [
+        "Esther",
+        "The Book of Esther"
+      ],
+      "JOB": [
+        "Job",
+        "The Book of Job"
+      ],
+      "PSA": [
+        "Psalm",
+        "The Book of Psalms"
+      ],
+      "PRO": [
+        "Proverbs",
+        "The Book of Proverbs"
+      ],
+      "ECC": [
+        "Ecclesiastes",
+        "The Book of Ecclesiastes"
+      ],
+      "SNG": [
+        "Song of Solomon",
+        "The Song of Solomon"
+      ],
+      "ISA": [
+        "Isaiah",
+        "The Book of Isaiah"
+      ],
+      "JER": [
+        "Jeremiah",
+        "The Book of Jeremiah"
+      ],
+      "LAM": [
+        "Lamentations",
+        "The Book of Lamentations"
+      ],
+      "EZK": [
+        "Ezekiel",
+        "The Book of Ezekiel"
+      ],
+      "DAN": [
+        "Daniel",
+        "The Book of Daniel"
+      ],
+      "HOS": [
+        "Hosea",
+        "The Book of Hosea"
+      ],
+      "JOL": [
+        "Joel",
+        "The Book of Joel"
+      ],
+      "AMO": [
+        "Amos",
+        "The Book of Amos"
+      ],
+      "OBA": [
+        "Obadiah",
+        "The Book of Obadiah"
+      ],
+      "JON": [
+        "Jonah",
+        "The Book of Jonah"
+      ],
+      "MIC": [
+        "Micah",
+        "The Book of Micah"
+      ],
+      "NAM": [
+        "Nahum",
+        "The Book of Nahum"
+      ],
+      "HAB": [
+        "Habakkuk",
+        "The Book of Habakkuk"
+      ],
+      "ZEP": [
+        "Zephaniah",
+        "The Book of Zephaniah"
+      ],
+      "HAG": [
+        "Haggai",
+        "The Book of Haggai"
+      ],
+      "ZEC": [
+        "Zechariah",
+        "The Book of Zechariah"
+      ],
+      "MAL": [
+        "Malachi",
+        "The Book of Malachi"
+      ],
+      "MAT": [
+        "Matthew",
+        "The Gospel according to Matthew"
+      ],
+      "MRK": [
+        "Mark",
+        "The Gospel according to Mark"
+      ],
+      "LUK": [
+        "Luke",
+        "The Gospel according to Luke"
+      ],
+      "JHN": [
+        "John",
+        "The Gospel according to John"
+      ],
+      "ACT": [
+        "Acts",
+        "The Acts of the Apostles"
+      ],
+      "ROM": [
+        "Romans",
+        "The Letter to the Romans"
+      ],
+      "1CO": [
+        "First Corinthians",
+        "The First Letter to the Corinthians"
+      ],
+      "2CO": [
+        "Second Corinthians",
+        "The Second Letter to the Corinthians"
+      ],
+      "GAL": [
+        "Galatians",
+        "The Letter to the Galatians"
+      ],
+      "EPH": [
+        "Ephesians",
+        "The Letter to the Ephesians"
+      ],
+      "PHP": [
+        "Philippians",
+        "The Letter to the Philippians"
+      ],
+      "COL": [
+        "Colossians",
+        "The Letter to the Colossians"
+      ],
+      "1TH": [
+        "First Thessalonians",
+        "The First Letter to the Thessalonians"
+      ],
+      "2TH": [
+        "Second Thessalonians",
+        "The Second Letter to the Thessalonians"
+      ],
+      "1TI": [
+        "First Timothy",
+        "The First Letter to Timothy"
+      ],
+      "2TI": [
+        "Second Timothy",
+        "The Second Letter to Timothy"
+      ],
+      "TIT": [
+        "Titus",
+        "The Letter to Titus"
+      ],
+      "PHM": [
+        "Philemon",
+        "The Letter to Philemon"
+      ],
+      "HEB": [
+        "Hebrews",
+        "The Letter to the Hebrews"
+      ],
+      "JAS": [
+        "James",
+        "The Letter of James"
+      ],
+      "1PE": [
+        "First Peter",
+        "The First Letter of Peter"
+      ],
+      "2PE": [
+        "Second Peter",
+        "The Second Letter of Peter"
+      ],
+      "1JN": [
+        "First John",
+        "The First Letter of John"
+      ],
+      "2JN": [
+        "Second John",
+        "The Second Letter of John"
+      ],
+      "3JN": [
+        "Third John",
+        "The Third Letter of John"
+      ],
+      "JUD": [
+        "Jude",
+        "The Letter of Jude"
+      ],
+      "REV": [
+        "Revelation",
+        "The Book of Revelation"
+      ],
+      "TOB": [
+        "Tobit",
+        "The Book of Tobit"
+      ],
+      "JDT": [
+        "Judith",
+        "The Book of Judith"
+      ],
+      "ESG": [
+        "Esther, Greek form",
+        "The Book of Esther, Greek form"
+      ],
+      "WIS": [
+        "Wisdom of Solomon",
+        "The Wisdom of Solomon"
+      ],
+      "SIR": [
+        "Sirach",
+        "The Book of Sirach"
+      ],
+      "BAR": [
+        "Baruch",
+        "The Book of Baruch"
+      ],
+      "1MA": [
+        "First Maccabees",
+        "The First Book of Maccabees"
+      ],
+      "2MA": [
+        "Second Maccabees",
+        "The Second Book of Maccabees"
+      ],
+      "1ES": [
+        "First Esdras",
+        "The First Book of Esdras"
+      ],
+      "MAN": [
+        "Prayer of Manasses",
+        "The Prayer of Manasses"
+      ],
+      "PS2": [
+        "Psalm 151",
+        "Psalm 151"
+      ],
+      "3MA": [
+        "Third Maccabees",
+        "The Third Book of Maccabees"
+      ],
+      "2ES": [
+        "Second Esdras",
+        "The Second Book of Esdras"
+      ],
+      "4MA": [
+        "Fourth Maccabees",
+        "The Fourth Book of Maccabees"
+      ],
+      "DAG": [
+        "Daniel, Greek form",
+        "The Book of Daniel, Greek form"
+      ]
+    }
   }
 }
